@@ -1,7 +1,6 @@
 <template>
     <div class="message" v-bind:class="{self: message.self}">
         <span>{{ message.message }}</span>
-        <div class="triangle"></div>
     </div>
 </template>
 
@@ -23,12 +22,14 @@
         margin-left: 1.5em;
         margin-bottom: 0.5em;
 
-        & > div.triangle{
+        &:after{
+            content: "";
             width: 0;
             height: 0;
             position: absolute;
+            display: inline-block;
             left: -$triangle-size;
-            bottom: 0;
+            bottom: 0px;
             border-left: $triangle-size solid transparent;
             border-bottom: $triangle-size solid $grey;
         }
@@ -50,7 +51,7 @@
             background-color: $blue;
         }
 
-        & > div.triangle{
+        &:after{
             border-bottom: $triangle-size solid $blue;
             border-right: $triangle-size solid transparent;
             border-left: 0;
