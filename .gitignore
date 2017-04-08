@@ -1,4 +1,11 @@
+# Node
 /node_modules
+npm-debug.log
+
+# Composer
+/vendor
+
+# Laravel public folder
 /public/storage
 /public/hot
 /public/mix-manifest.json
@@ -6,10 +13,9 @@
 /public/fonts
 /public/images
 /public/js
+
+# Laravel storage
 /storage/*.key
-/vendor
-/.idea
-/.vagrant
-Homestead.json
-Homestead.yaml
+
+# Environment files
 .env
