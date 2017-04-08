@@ -1,5 +1,5 @@
-const { mix } = require('laravel-mix');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const { mix } = require("laravel-mix");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,10 +12,10 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-    .extract(['vue', 'axios', 'laravel-echo'])
-    .sass('resources/assets/sass/app.scss', 'public/css')
-    .copyDirectory('resources/assets/images', 'public/images')
+mix.js("resources/assets/js/app.js", "public/js")
+    .extract(["vue", "axios", "laravel-echo"])
+    .sass("resources/assets/sass/app.scss", "public/css")
+    .copyDirectory("resources/assets/images", "public/images")
     .version();
 
 mix.webpackConfig({
@@ -23,6 +23,6 @@ mix.webpackConfig({
         new FriendlyErrorsWebpackPlugin(),
     ],
     devServer: {
-        stats: 'minimal',
+        stats: "minimal",
     },
 });
