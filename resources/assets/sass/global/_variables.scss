@@ -1,0 +1,34 @@
+/**========================================
+ * COLORS
+ =========================================*/
+
+// Define raw colours
+$black: #000000;
+$white: #FFFFFF;
+$grey-dark: #222222;
+$grey: #444444;
+$grey-light: #888888;
+$grey-very-light: #e7e4e4;
+$blue: #40B2FF;
+$dark-blue: darken($blue, 20%);
+
+// Define brand colours
+$brand-primary: $blue;
+$brand-secondary: $dark-blue;
+
+// Assign colours
+$text-color: $black;
+$link-colour: $brand-secondary;
+$link-colour-hover: $blue;
+
+/**========================================
+ * FONTS
+ =========================================*/
+
+// Define fonts
+$roboto: 'Roboto', sans-serif;
+$source-sans: 'Source Sans Pro', sans-serif;
+
+// Assign fonts
+$font-heading: $source-sans;
+$font-text: $roboto;

@@ -1,0 +1,39 @@
+// Component variables
+$navbar-height: 70px;
+$avatar-size: 50px;
+
+nav{
+    background-color: $brand-primary;
+    color: $white;
+    min-height: $navbar-height;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: $navbar-height;
+        padding: 0 1em;
+    }
+
+    .left img{
+        height: 30px;
+    }
+
+    .middle > img{
+        height: 30px;
+        margin-top: 8px;
+    }
+
+    .avatar{
+        width: $avatar-size;
+        height: $avatar-size;
+        background-color: white;
+        border-radius: 100%;
+        overflow: hidden;
+        background-size: cover;
+    }
+}

@@ -1,0 +1,13 @@
+// Bootstrap
+@import "global/variables";
+@import "vendor/normalize.scss";
+
+// Set default styles for entire document
+@import "global/default-style";
+
+// Add responsiveness
+@import "components/container";
+@import "components/messages";
+@import "components/nav";
+
+@import "static/app";
