@@ -1,13 +1,23 @@
-// Bootstrap
+// Bootstrap variables and Normalize.css
 @import "global/variables";
 @import "vendor/normalize.scss";
 
-// Set default styles for entire document
-@import "global/default-style";
+// Import the helpers
+@import "global/helpers";
 
-// Add responsiveness
-@import "components/container";
-@import "components/messages";
+// Import the individual HTML elements
+@import "elements/anchor";
+@import "elements/button";
+@import "elements/form";
+@import "elements/heading";
+@import "elements/html";
+@import "elements/input";
+@import "elements/list";
+
+// Import reusable components
 @import "components/nav";
+@import "components/messages";
+@import "components/container";
 
-@import "static/app";
+// Import specific page styling
+@import "pages/app"
