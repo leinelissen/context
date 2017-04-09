@@ -28,8 +28,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get the messages for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function messages()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany("App\Message");
     }
 }
