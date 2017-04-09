@@ -6,9 +6,9 @@
 
 import Vue from "vue";
 
-window.axios = require("axios");
-window.axios.defaults.headers.common["X-CSRF-TOKEN"] = document.head.querySelector("meta[name=csrf-token]").content;;
-window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+// window.axios = require("axios");
+// window.axios.defaults.headers.common["X-CSRF-TOKEN"] = document.head.querySelector("meta[name=csrf-token]").content;
+// window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,11 +16,16 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component("chat-container", require("./components/chat/container.vue"));
-Vue.component("chat-message", require("./components/chat/message.vue"));
-Vue.component("chat-reply", require("./components/chat/reply.vue"));
+const chatContainer = Vue.component("chat-container", require("./components/chat/container.vue"));
+const chatMessage = Vue.component("chat-message", require("./components/chat/message.vue"));
+const chatReply = Vue.component("chat-reply", require("./components/chat/reply.vue"));
 
 /* global app */
 const app = new Vue({
-    "el": "#app"
+    el: "#app",
+    components:{
+        "chat-container": chatContainer,
+        "chat-message": chatMessage,
+        "chat-reply": chatReply
+    }
 });

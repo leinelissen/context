@@ -7,7 +7,7 @@
             <img src="images/context-white.svg">
         </div>
         <div class="right">
-            <div class="avatar" style="background-image: url('images/frank.jpeg')"></div>
+            <div class="avatar" style="background-image: url('images/frank_small.jpg')"></div>
         </div>
     </div>
 </nav>
