@@ -181,6 +181,8 @@ return [
          * Custom providers
          */
         Laravel\Passport\PassportServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Appstract\Opcache\OpcacheServiceProvider::class,
 
     ],
 
