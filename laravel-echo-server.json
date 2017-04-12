@@ -9,16 +9,19 @@
 	],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {},
+		"redis": {
+            "port": "6379",
+            "host": "127.0.0.1"
+        },
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": false,
-	"host": null,
+	"host": "context.dev",
 	"port": "6001",
-	"protocol": "http",
+	"protocol": "https",
 	"socketio": {},
-	"sslCertPath": "",
-	"sslKeyPath": ""
+	"sslCertPath": "/Users/leinelissen/.valet/Certificates/context.dev.crt",
+	"sslKeyPath": "/Users/leinelissen/.valet/Certificates/context.dev.key"
 }
