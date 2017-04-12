@@ -15,7 +15,8 @@ module.exports = {
     "globals":{
         "window": true,
         "vue": true,
-        "app": true
+        "app": true,
+        "axios": true,
     },
     "rules": {
         "indent": [
