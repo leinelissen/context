@@ -1,12 +1,17 @@
 <template>
-    <div class="message" v-bind:class="{self: message.self}">
+    <div class="message" v-bind:class="{self: (message.user.id === userid)}">
         <span>{{ message.message }}</span>
     </div>
 </template>
 
 <script type="text/javascript">
     export default {
-        props: ["message"]
+        props: ["message"],
+        data() {
+            return{
+                userid: window.userid
+            };
+        },
     };
 </script>
 

@@ -24,20 +24,34 @@
             };
         },
         created(){
+            // Firstly, retrieve all current messages
             axios.get("/api/messages")
             .then(response => {
                 this.messages = response.data;
                 this.scrollToBottom();
             });
+
+            // Then install a listener for any new messages
+            Echo.join("chat")
+                .listen("MessageCreated", e => {
+                    this.messages.push(e.message);
+                    this.scrollToBottom();
+                });
         },
         methods: {
             addMessage(message) {
-                // Add new message to message stack
-                this.messages.push(message);
-
                 // Create message in backend
                 axios.post("/api/messages", message)
-                .then(response => {
+                .then(() => {
+                    // Add new message to message stack
+                    this.messages.push({
+                        message: message.message,
+                        user:{
+                            id: window.userid
+                        }
+                    });
+
+                    // Then show new message by scrolling
                     this.scrollToBottom();
                 })
                 .catch(error => {

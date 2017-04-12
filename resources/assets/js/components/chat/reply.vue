@@ -23,8 +23,7 @@
                 if(this.messageText !== ""){
                     // Emit event to parent
                     this.$emit("messagesent", {
-                        message: this.messageText,
-                        self: true
+                        message: this.messageText
                     });
 
                     // Reset reply element

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreated;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,16 +17,6 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::with('user')->get();
-
-        $messages->map(function ($item) {
-            if ($item->user->id === Auth::id()) {
-                $item->self = true;
-            } else {
-                $item->self = false;
-            }
-
-            return $item;
-        });
 
         return $messages;
     }
@@ -50,13 +41,22 @@ class MessageController extends Controller
     {
         // Validate input data
         $this->validate($request, [
-            'message' => 'required|string'
+            "message" => "required|string"
         ]);
 
+        // Fetch current user
+        $user = Auth::user();
+
         // Create new message
-        $message = new Message;
-        $message->message = $request->message;
-        $message->save();
+        $message = new Message([
+            "message" => $request->message
+        ]);
+
+        // Assign new message to current user
+        $dispatched = $user->messages()->save($message);
+
+        // Dispatch event
+        broadcast(new MessageCreated($dispatched))->toOthers();
     }
 
     /**
