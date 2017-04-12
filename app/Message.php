@@ -2,12 +2,10 @@
 
 namespace App;
 
-use App\Traits\OwnedByUser;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    use OwnedByUser;
     
     /**
      * The attributes that are mass assignable.
