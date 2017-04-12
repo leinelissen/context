@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -14,7 +15,19 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::with('user')->get();
+
+        $messages->map(function ($item) {
+            if ($item->user->id === Auth::id()) {
+                $item->self = true;
+            } else {
+                $item->self = false;
+            }
+
+            return $item;
+        });
+
+        return $messages;
     }
 
     /**

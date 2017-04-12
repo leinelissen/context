@@ -6,6 +6,9 @@
                 :message="message"
                 :key="message.id">
             </chat-message>
+            <div class="empty" v-show="messages.lenth === 0">
+                No messages to show.
+            </div>
         </div>
         <chat-reply
             v-on:messagesent="addMessage">
@@ -16,30 +19,39 @@
 <script type="text/javascript">
     export default {
         data() {
-            return {
-                messages: [
-                    {
-                        "message": "Message one!",
-                        "self": false
-                    },
-                    {
-                        "message": "Message two!",
-                        "self": true
-                    },
-                    {
-                        "message": "Message three!",
-                        "self": false
-                    }
-                ]
+            return{
+                messages: [],
             };
+        },
+        created(){
+            axios.get("/api/messages")
+            .then(response => {
+                this.messages = response.data;
+                this.scrollToBottom();
+            });
         },
         methods: {
             addMessage(message) {
                 // Add new message to message stack
                 this.messages.push(message);
 
-                // Scroll to bottom of containing div
+                // Create message in backend
+                axios.post("/api/messages", message)
+                .then(response => {
+                    this.scrollToBottom();
+                })
+                .catch(error => {
+                    alert("Your message could not be sent!");
+                    console.log(error);
+                });
+            },
+            scrollToBottom() {
+                // Target containing div
                 var container = this.$el.querySelector(".chat-container > div");
+
+                // Scroll to bottom of containing div
+                // NOTE: The scroll function is executed with a sligt timeout,
+                // so we can wait for the element to be added to the dom
                 setTimeout(function(){
                     container.scrollTop = container.scrollHeight;
                 }, 1);
