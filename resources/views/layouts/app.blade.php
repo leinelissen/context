@@ -16,6 +16,9 @@
         <div id="app">
             @yield('content')
         </div>
+        <script type="text/javascript">
+            window.userid = {{ Auth::id() }};
+        </script>
         <script src="{{ mix('/js/manifest.js') }}"></script>
         <script src="{{ mix('/js/vendor.js') }}"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
