@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="http://i.imgur.com/r0MreWz.png">
+    <img src="http://i.imgur.com/r0MreWz.png" width="250px">
 </p>
 
 # Context
