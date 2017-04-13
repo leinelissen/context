@@ -17,5 +17,8 @@ npm-debug.log
 # Laravel storage
 /storage/*.key
 
+# Echo server file
+laravel-echo-server.json
+
 # Environment files
 .env
