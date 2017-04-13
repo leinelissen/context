@@ -1,5 +1,5 @@
 <p align="center">
-![Context](http://i.imgur.com/r0MreWz.png)
+    <img src="http://i.imgur.com/r0MreWz.png">
 </p>
 
 # Context
