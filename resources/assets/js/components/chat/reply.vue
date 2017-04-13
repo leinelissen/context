@@ -5,7 +5,6 @@
                 placeholder="Typ voor nieuw bericht..."
                 v-model="messageText"
                 @keyup.enter="sendMessage">
-            <a href="#" @click="sendMessage">Send</a>
         </div>
     </footer>
 </template>
@@ -40,7 +39,7 @@
     footer{
         position: fixed;
         bottom: 0;
-        background-color: $grey-very-light;
+        background-color: #f5f5f5;
         width: 100%;
     }
 
@@ -54,8 +53,13 @@
         width: 100%;
         height: 40px;
         margin: 0;
-        border-radius: 0;
+        border-radius: 40px;
         background-color: $white;
+        border: 1px solid #dedede;
+
+        &:focus{
+            border: 1px solid $blue;
+        }
     }
 
     a{
