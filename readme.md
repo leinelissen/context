@@ -1,5 +1,5 @@
 <p align="center">
-![](http://svgshare.com/i/1Fe.svg)
+![Context](http://i.imgur.com/r0MreWz.png)
 </p>
 
 # Context
