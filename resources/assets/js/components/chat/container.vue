@@ -79,7 +79,8 @@
     @import "../../../sass/vue";
 
     div.container{
-        overflow: auto;
+        overflow-y: scroll; /* has to be scroll, not auto */
+        -webkit-overflow-scrolling: touch;
         height: 100%;
         padding: 25px 0;
     }
