@@ -46,7 +46,11 @@
     .container{
         display: flex;
         align-items: center;
-        padding: 1em;
+        padding: 0.75em;
+
+        @media($media-min-width){
+            padding: 1em;
+        }
     }
 
     input{

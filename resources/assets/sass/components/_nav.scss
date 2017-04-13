@@ -1,11 +1,9 @@
 // Component variables
-$navbar-height: 70px;
 $avatar-size: 50px;
 
 nav{
     background-color: rgba($brand-primary, 0.9);
     color: $white;
-    min-height: $navbar-height;
     position: fixed;
     z-index: 10;
     width: 100%;
@@ -15,16 +13,24 @@ nav{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: $navbar-height;
+        height: 50px;
         padding: 0 1em;
+
+        @media($media-min-width){
+            height: 70px;
+
+            img{
+                height: 30px;
+            }
+        }
     }
 
     .left img{
-        height: 30px;
+        height: 25px;
     }
 
     .middle > img{
-        height: 30px;
+        height: 25px;
         margin-top: 6px;
     }
 
