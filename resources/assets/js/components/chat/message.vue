@@ -21,42 +21,35 @@
 
     // Set other variables
     $triangle-size: 10px;
-    $border-radius: 11px;
 
     div.message{
         position: relative;
-        margin-left: 1.5em;
-        margin-bottom: 0.5em;
+        margin: 0.5em 1.5em 0 1.5em;
 
         &:after{
             content: "";
-            width: 0;
-            height: 0;
             position: absolute;
-            display: inline-block;
             left: -$triangle-size;
-            bottom: 0px;
+            bottom: 0;
             border-left: $triangle-size solid transparent;
-            border-bottom: $triangle-size solid #232323;
+            border-bottom: $triangle-size solid $grey-dark;
         }
     }
 
     span{
-        background-color: $grey;
-        background-image: linear-gradient(-180deg, #444444 0%, #232323 100%);
+        background-image: $grey-dark-gradient;
         color: $white;
         display: inline-block;
         padding: 0.75em 1em;
-        max-width: 40%;
+        max-width: 80%;
         border-radius: $border-radius $border-radius $border-radius 0;
     }
 
     div.self{
         text-align: right;
-        margin-right: 1.5em;
 
         span{
-            background-image: linear-gradient(-180deg, #00C1FF 0%, #40B2FF 78%);
+            background-image: $blue-gradient;
             border-radius: $border-radius $border-radius 0 $border-radius;
         }
 

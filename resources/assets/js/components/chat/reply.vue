@@ -39,7 +39,7 @@
     footer{
         position: fixed;
         bottom: 0;
-        background-color: #f5f5f5;
+        background-color: $grey-light;
         width: 100%;
     }
 
@@ -50,29 +50,6 @@
     }
 
     input{
-        width: 100%;
-        height: 40px;
         margin: 0;
-        border-radius: 40px;
-        background-color: $white;
-        border: 1px solid #dedede;
-
-        &:focus{
-            border: 1px solid $blue;
-        }
-    }
-
-    a{
-        display: block;
-        color: $white;
-        background-color: $brand-primary;
-        height: 100%;
-        padding: 0.5em;
-        margin-left: 0.5em;
-        text-decoration: none;
-
-        &:hover{
-            background-color: $brand-secondary;
-        }
     }
 </style>

@@ -5,16 +5,21 @@
 // Define raw colours
 $black: #000000;
 $white: #FFFFFF;
-$grey-dark: #222222;
-$grey: #444444;
-$grey-light: #888888;
-$grey-very-light: #e7e4e4;
+$grey-dark: #252525;
+$grey: #686868;
+$grey-light: #dedede;
+$grey-very-light: #f5f5f5;
 $blue: #40B2FF;
-$dark-blue: darken($blue, 20%);
+$blue-light: #00C1FF;
 
 // Define brand colours
 $brand-primary: $blue;
-$brand-secondary: $dark-blue;
+$brand-secondary: $blue-light;
+
+// Define gradients
+$blue-gradient: linear-gradient(-180deg, $blue-light 0%, $blue 75%);
+$grey-gradient: linear-gradient(-180deg, #888888 0%, $grey 75%);
+$grey-dark-gradient: linear-gradient(-180deg, #444444 0%, $grey-dark 75%);
 
 // Assign colours
 $text-color: $black;
@@ -32,3 +37,8 @@ $source-sans: 'Source Sans Pro', sans-serif;
 // Assign fonts
 $font-heading: $source-sans;
 $font-text: $roboto;
+
+/**========================================
+ * OTHER
+ =========================================*/
+$border-radius: 11px;

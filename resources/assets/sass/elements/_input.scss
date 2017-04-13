@@ -14,10 +14,11 @@ textarea {
     /* The 6px vertically centers text on FF, ignored by Webkit */
     background-color: $white;
     border: 0;
-    border-bottom: 1px solid $grey-light;
+    border: 1px solid $grey-light;
     box-shadow: none;
     box-sizing: border-box;
     width: 100%;
+    border-radius: $border-radius;
 }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],
@@ -48,7 +49,7 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-    border-bottom: 2px solid $blue;
+    border: 1px solid $blue;
     outline: 0;
 }
 
