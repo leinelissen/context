@@ -43,6 +43,7 @@
         padding: 0.75em 1em;
         max-width: 80%;
         border-radius: $border-radius $border-radius $border-radius 0;
+        text-align: left;
     }
 
     div.self{

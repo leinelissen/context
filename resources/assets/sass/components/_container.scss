@@ -3,6 +3,10 @@
     margin: 0 auto;
 
     &.padding{
-        padding: 30px 0;
+        margin-top: 70px;
+    }
+
+    &.small{
+        max-width: 350px;
     }
 }

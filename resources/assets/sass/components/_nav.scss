@@ -3,7 +3,7 @@ $navbar-height: 70px;
 $avatar-size: 50px;
 
 nav{
-    background-color: $brand-primary;
+    background-color: rgba($brand-primary, 0.9);
     color: $white;
     min-height: $navbar-height;
     position: fixed;

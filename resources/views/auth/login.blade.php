@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container padding">
+    <div class="container padding small">
+        <h1>Login</h1>
         <form role="form" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 
@@ -23,13 +24,13 @@
                 <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
             </label>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit">
                 Login
             </button>
 
-            <br>
+            <br><br>
 
-            <a class="button" href="{{ route('password.request') }}">
+            <a class="center" href="{{ route('password.request') }}">
                 Forgot Your Password?
             </a>
         </form>

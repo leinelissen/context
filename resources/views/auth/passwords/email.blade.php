@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container padding">
+    <div class="container padding small">
         <h1>Reset Password</h1>
         @if (session('status'))
             <div>

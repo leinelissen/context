@@ -39,7 +39,7 @@
     footer{
         position: fixed;
         bottom: 0;
-        background-color: $grey-light;
+        background-color: $grey-very-light;
         width: 100%;
     }
 
@@ -51,5 +51,6 @@
 
     input{
         margin: 0;
+        background-color: $white;
     }
 </style>

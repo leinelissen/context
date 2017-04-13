@@ -7,18 +7,17 @@ input[type="reset"],
 input[type="submit"] {
     display: inline-block;
     height: 38px;
-    padding: 0 30px;
-    color: #555;
+    padding: 0 20px;
+    color: $grey-dark;
     text-align: center;
-    font-size: 11px;
+    font-family: $font-heading;
+    font-size: 14px;
     font-weight: 600;
     line-height: 38px;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
     background-color: transparent;
-    border: 1px solid #bbb;
+    border: 1px solid $grey;
     cursor: pointer;
     border-radius: $border-radius;
 }
@@ -61,11 +60,4 @@ input[type="submit"].button-primary:hover {
     color: $white;
     background-color: $blue;
     border-color: $blue;
-}
-
-.button,
-button {
-    margin-bottom: 1rem;
-    margin: 0 auto;
-    display: table;
 }
