@@ -40,10 +40,14 @@
         background-image: $grey-dark-gradient;
         color: $white;
         display: inline-block;
-        padding: 0.75em 1em;
+        padding: 0.6em 0.9em;
         max-width: 80%;
         border-radius: $border-radius $border-radius $border-radius 0;
         text-align: left;
+
+        @media($media-min-width){
+            padding: 0.75em 1em;
+        }
     }
 
     div.self{
