@@ -23,6 +23,7 @@
         @if(Auth::check())
             <script type="text/javascript">
                 window.userid = {{ Auth::id() }};
+                @stack('js_variables')
             </script>
         @endif
         <script src="{{ mix('/js/manifest.js') }}"></script>

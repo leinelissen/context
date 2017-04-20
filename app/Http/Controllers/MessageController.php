@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageCreated;
 use App\Message;
+use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,20 +44,21 @@ class MessageController extends Controller
             "room_id" => "required|integer",
         ]);
 
-        // Fetch current user
+        // Fetch current user and designated room
         $user = Auth::user();
+        $room = Room::find($request->room_id);
 
         // Create new message
         $message = new Message([
             "message" => $request->message,
-            "room_id" => $request->room_id
+            "room_id" => $room->id
         ]);
 
-        // Assign new message to current user
-        $dispatched = $user->messages()->save($message);
+        // Save message in user context
+        $user->messages()->save($message);
 
         // Dispatch event
-        broadcast(new MessageCreated($dispatched))->toOthers();
+        broadcast(new MessageCreated($message))->toOthers();
     }
 
     /**

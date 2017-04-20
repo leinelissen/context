@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <chat-container></chat-container>
+    <chat-container roomid="1"></chat-container>
 @endsection

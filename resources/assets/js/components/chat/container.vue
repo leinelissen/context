@@ -18,6 +18,9 @@
 
 <script type="text/javascript">
     export default {
+        props: [
+            "roomid"
+        ],
         data() {
             return{
                 messages: [],
@@ -25,7 +28,7 @@
         },
         created(){
             // Firstly, retrieve all current messages
-            axios.get("/api/messages")
+            axios.get("/api/room/" + this.roomid)
             .then(response => {
                 this.messages = response.data;
                 this.scrollToBottom();
@@ -40,14 +43,20 @@
         },
         methods: {
             addMessage(message) {
+                // Add roomid to object
+                message.room_id = this.roomid;
+
                 // Create message in backend
-                axios.post("/api/messages", message)
+                axios.post("/api/message", message)
                 .then(() => {
                     // Add new message to message stack
                     this.messages.push({
                         message: message.message,
                         user:{
                             id: window.userid
+                        },
+                        room:{
+                            id: this.roomid
                         }
                     });
 
