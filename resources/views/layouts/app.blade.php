@@ -15,12 +15,16 @@
     </head>
     <body>
         @include('components.nav')
+
         <div id="app">
             @yield('content')
         </div>
-        <script type="text/javascript">
-            window.userid = {{ Auth::id() }};
-        </script>
+
+        @if(Auth::check())
+            <script type="text/javascript">
+                window.userid = {{ Auth::id() }};
+            </script>
+        @endif
         <script src="{{ mix('/js/manifest.js') }}"></script>
         <script src="{{ mix('/js/vendor.js') }}"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
