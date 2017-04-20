@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MessageCreated;
-use App\Message;
+use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MessageController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        return Auth::user()->rooms;
     }
 
     /**
@@ -39,44 +38,41 @@ class MessageController extends Controller
     {
         // Validate input data
         $this->validate($request, [
-            "message" => "required|string",
-            "room_id" => "required|integer",
+            "group" => "required|boolean",
+            "name" => "nullable|string",
         ]);
 
         // Fetch current user
         $user = Auth::user();
 
         // Create new message
-        $message = new Message([
-            "message" => $request->message,
-            "room_id" => $request->room_id
+        $room = new Room([
+            "group" => $request->group,
+            "name" => $request->name
         ]);
 
         // Assign new message to current user
-        $dispatched = $user->messages()->save($message);
-
-        // Dispatch event
-        broadcast(new MessageCreated($dispatched))->toOthers();
+        return $user->rooms()->save($room);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Room $room)
     {
-        //
+        return $room->messages;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Message $message)
+    public function edit(Room $room)
     {
         //
     }
@@ -85,10 +81,10 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -96,10 +92,10 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Message  $message
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy(Room $room)
     {
         //
     }
