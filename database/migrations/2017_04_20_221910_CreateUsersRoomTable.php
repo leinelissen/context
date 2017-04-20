@@ -13,7 +13,7 @@ class CreateUsersRoomTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms_users', function (Blueprint $table) {
+        Schema::create('room_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms');
@@ -30,6 +30,6 @@ class CreateUsersRoomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms_users');
+        Schema::dropIfExists('room_user');
     }
 }
