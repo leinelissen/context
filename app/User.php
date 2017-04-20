@@ -37,4 +37,14 @@ class User extends Authenticatable
     {
         return $this->hasMany("App\Message");
     }
+
+    /**
+     * Get the rooms for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rooms()
+    {
+        return $this->hasMany("App\Room");
+    }
 }
