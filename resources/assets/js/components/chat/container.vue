@@ -79,10 +79,12 @@
     @import "../../../sass/vue";
 
     div.container{
-        overflow-y: scroll; /* has to be scroll, not auto */
-        -webkit-overflow-scrolling: touch;
         height: 100%;
-        padding: 25px 0;
+        padding: 75px 0;
+
+        // Enable inertial scrolling for iOS devices
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     div.chat-container{
