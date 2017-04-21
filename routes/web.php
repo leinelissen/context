@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 })->middleware('auth');
+
+Route::get('/{id}', 'BootstrapController@getRoom')->middleware(['auth', "ownedByUser"]);
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

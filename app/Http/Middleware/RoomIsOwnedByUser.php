@@ -19,8 +19,8 @@ class RoomIsOwnedByUser
     {
         $parameters = $request->route()->parameters();
 
-        if (!in_array('id', $parameters)) {
-            // return redirect('/');
+        if (!isset($parameters['id'])) {
+            return redirect('/');
         };
 
         $room = Room::findOrFail($parameters['id']);
