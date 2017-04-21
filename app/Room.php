@@ -16,6 +16,15 @@ class Room extends Model
     ];
 
     /**
+     * The attributes that should be cast to a certain type
+     *
+     * @var array
+     */
+    protected $casts = [
+        "group" => "boolean"
+    ];
+
+    /**
      * Get the messages for the room.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
