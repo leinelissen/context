@@ -29,8 +29,8 @@ class BootstrapController extends Controller
      */
     public function getRoomOverview()
     {
-        $rooms = Auth::user()->rooms->orderBy('updated_at', 'desc');
+        $rooms = Auth::user()->rooms->sortByDesc('updated_at');
 
-        return view('index')->with('rooms', $room);
+        return view('index')->with('rooms', $rooms);
     }
 }
