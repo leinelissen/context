@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
-
-Route::get('/{id}', 'BootstrapController@getRoom')->middleware(['auth', "ownedByUser"]);
-
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'BootstrapController@getRoomOverview');
+    Route::get('/{id}', 'BootstrapController@getRoom')->middleware("ownedByUser");
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+});
 
 Auth::routes();
