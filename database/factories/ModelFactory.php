@@ -16,9 +16,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName . ' ' . $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+    return [
+        'message' => $faker->text,
+        'channel_id' => function () {
+            return App\Channel::inRandomOrder()->get()->first()->id;
+        },
+        'user_id' => function () {
+            return App\User::inRandomOrder()->get()->first()->id;
+        },
     ];
 });
