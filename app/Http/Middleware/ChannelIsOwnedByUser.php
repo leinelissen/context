@@ -6,7 +6,7 @@ use Closure;
 use App\Channel;
 use Illuminate\Support\Facades\Auth;
 
-class RoomIsOwnedByUser
+class ChannelIsOwnedByUser
 {
     /**
      * Handle an incoming request.
