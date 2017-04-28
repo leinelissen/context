@@ -27,8 +27,8 @@ class AddChannelColumnToMessagesTable extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropColumn('channel_id');
             $table->dropForeign('messages_channel_id_foreign');
+            $table->dropColumn('channel_id');
         });
     }
 }
