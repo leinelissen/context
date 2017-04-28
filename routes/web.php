@@ -12,8 +12,8 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'BootstrapController@getRoomOverview');
-    Route::get('/{id}', 'BootstrapController@getRoom')->middleware("ownedByUser");
+    Route::get('/', 'BootstrapController@getChannels');
+    Route::get('/channel/{id}', 'BootstrapController@getChannel')->middleware("ownedByUser");
     Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 });
 

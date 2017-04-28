@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageCreated;
 use App\Message;
-use App\Room;
+use App\Channel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,17 +41,17 @@ class MessageController extends Controller
         // Validate input data
         $this->validate($request, [
             "message" => "required|string",
-            "room_id" => "required|integer",
+            "channel_id" => "required|integer",
         ]);
 
-        // Fetch current user and designated room
+        // Fetch current user and designated channel
         $user = Auth::user();
-        $room = Room::find($request->room_id);
+        $channel = channel::find($request->channel_id);
 
         // Create new message
         $message = new Message([
             "message" => $request->message,
-            "room_id" => $room->id
+            "channel_id" => $channel->id
         ]);
 
         // Save message in user context

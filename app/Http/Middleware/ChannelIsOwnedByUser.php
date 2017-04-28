@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Room;
+use App\Channel;
 use Illuminate\Support\Facades\Auth;
 
 class RoomIsOwnedByUser
@@ -23,8 +23,8 @@ class RoomIsOwnedByUser
             return redirect('/');
         };
 
-        $room = Room::findOrFail($parameters['id']);
-        $users = $room->users;
+        $channel = Channel::findOrFail($parameters['id']);
+        $users = $channel->users;
 
         if (!$users->contains('id', Auth::id())) {
             return redirect('/');

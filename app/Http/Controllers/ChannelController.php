@@ -6,7 +6,7 @@ use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoomController extends Controller
+class ChannelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return Auth::user()->rooms;
+        return Auth::user()->channels;
     }
 
     /**
@@ -46,33 +46,33 @@ class RoomController extends Controller
         $user = Auth::user();
 
         // Create new message
-        $room = new Room([
+        $channel = new Channel([
             "group" => $request->group,
             "name" => $request->name
         ]);
 
         // Assign new message to current user
-        return $user->rooms()->save($room);
+        return $user->channels()->save($channel);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Room  $room
+     * @param  \App\Room  $channel
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show(Channel $channel)
     {
-        return $room->messages->load('user');
+        return $channel->messages->load('user');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Room  $room
+     * @param  \App\Room  $channel
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit(Channel $channel)
     {
         //
     }
@@ -81,10 +81,10 @@ class RoomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
+     * @param  \App\Room  $channel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, Channel $channel)
     {
         //
     }
@@ -92,10 +92,10 @@ class RoomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Room  $room
+     * @param  \App\Room  $channel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy(Channel $channel)
     {
         //
     }

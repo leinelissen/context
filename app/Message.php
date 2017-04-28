@@ -14,7 +14,7 @@ class Message extends Model
      */
     protected $fillable = [
         "message",
-        "room_id"
+        "channel_id"
     ];
 
     /**
@@ -28,12 +28,12 @@ class Message extends Model
     }
 
     /**
-     * Get the room that owns the message.
+     * Get the channel that owns the message.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function room()
+    public function channel()
     {
-        return $this->belongsTo("App\Room");
+        return $this->belongsTo("App\Channel");
     }
 }

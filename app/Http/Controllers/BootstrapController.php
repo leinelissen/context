@@ -5,32 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Message;
-use App\Room;
+use App\Channel;
 
 class BootstrapController extends Controller
 {
     /**
-     * Return the requested room within the room view
+     * Return the requested channel within the channel view
      *
      * @param  int $id The supplied id
      * @return View
      */
-    public function getRoom($id)
+    public function getChannel($id)
     {
-        $room = Room::findOrFail($id);
+        $channel = channel::findOrFail($id);
 
-        return view('room')->with('room', $room);
+        return view('channel')->with('channel', $channel);
     }
 
     /**
-     * Return an overview of all rooms the user is involved with
+     * Return an overview of all channels the user is involved with
      *
      * @return View
      */
-    public function getRoomOverview()
+    public function getChannels()
     {
-        $rooms = Auth::user()->rooms->sortByDesc('updated_at');
+        $channels = Auth::user()->channels->load('users')->sortByDesc('updated_at');
 
-        return view('index')->with('rooms', $rooms);
+        return view('index')->with('channels', $channels);
     }
 }

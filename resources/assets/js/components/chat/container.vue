@@ -19,7 +19,7 @@
 <script type="text/javascript">
     export default {
         props: [
-            "roomid"
+            "channelid"
         ],
         data() {
             return{
@@ -28,7 +28,7 @@
         },
         created(){
             // Firstly, retrieve all current messages
-            axios.get("/api/room/" + this.roomid)
+            axios.get("/api/channel/" + this.channelid)
             .then(response => {
                 this.messages = response.data;
                 this.scrollToBottom();
@@ -43,8 +43,8 @@
         },
         methods: {
             addMessage(message) {
-                // Add roomid to object
-                message.room_id = this.roomid;
+                // Add channelid to object
+                message.channel_id = this.channelid;
 
                 // Create message in backend
                 axios.post("/api/message", message)
@@ -55,8 +55,8 @@
                         user:{
                             id: window.userid
                         },
-                        room:{
-                            id: this.roomid
+                        channel:{
+                            id: this.channelid
                         }
                     });
 

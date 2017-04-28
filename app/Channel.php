@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Channel extends Model
 {
     /**
      * The attributes that are mass assignable.

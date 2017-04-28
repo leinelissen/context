@@ -39,12 +39,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the rooms for the user.
+     * Get the channels for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function rooms()
+    public function channels()
     {
-        return $this->belongsToMany("App\Room");
+        return $this->belongsToMany("App\Channel");
     }
 }
