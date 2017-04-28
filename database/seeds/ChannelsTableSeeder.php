@@ -20,10 +20,10 @@ class ChannelsTableSeeder extends Seeder
     public function __construct()
     {
         $this->channelNames = [
-            "Frans",
-            "Duits",
-            "Engels",
-            "Nederlands",
+            "Frans 🇫🇷",
+            "Duits 🇩🇪",
+            "Engels 🇬🇧",
+            "Nederlands 🇳🇱",
             "Maatschappijleer",
             "Wiskunde",
             "Scheikunde",
