@@ -29,7 +29,7 @@ class BootstrapController extends Controller
      */
     public function getChannels()
     {
-        $channels = Auth::user()->channels->load('users')->sortByDesc('updated_at');
+        $channels = Auth::user()->channels->sortByDesc('updated_at');
 
         return view('index')->with('channels', $channels);
     }
