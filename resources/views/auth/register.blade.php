@@ -6,11 +6,18 @@
         <form role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+            <label for="first_name">First name</label>
+            <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
-            @if ($errors->has('name'))
-                <strong>{{ $errors->first('name') }}</strong>
+            @if ($errors->has('first_name'))
+                <strong>{{ $errors->first('first_name') }}</strong>
+            @endif
+
+            <label for="last_name">Last name</label>
+            <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+            @if ($errors->has('last_name'))
+                <strong>{{ $errors->first('last_name') }}</strong>
             @endif
 
             <label for="email">Email address</label>
@@ -19,16 +26,6 @@
             @if ($errors->has('email'))
                 <strong>{{ $errors->first('email') }}</strong>
             @endif
-
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" required>
-
-            @if ($errors->has('password'))
-                <strong>{{ $errors->first('password') }}</strong>
-            @endif
-
-            <label for="password-confirm">Confirm password</label>
-            <input id="password-confirm" type="password" name="password_confirmation" required>
 
             <br>
 

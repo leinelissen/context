@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi {{ $user->name }}!
+# Hi {{ $user->first_name }}!
 
 It appears you are trying to login to Context. How wonderful! Click the button below to get authenticated. It's as simple as that.
 

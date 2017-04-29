@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi there {{ $user->name }}!
+# Hi there {{ $user->first_name }}!
 
 Welcome to Context, and thank you for registering.
 
