@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('message', 'MessageController');
-    Route::resource('room', 'RoomController');
+    Route::resource('channel', 'ChannelController');
 });

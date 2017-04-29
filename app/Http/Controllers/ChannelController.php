@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
+use App\Channel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

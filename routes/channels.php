@@ -1,5 +1,7 @@
 <?php
 
+use App\Channel;
+
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -11,10 +13,6 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
-
-Broadcast::channel('chat', function ($user) {
-    return ['id' => $user->id, 'name' => $user->name];
+Broadcast::channel('Channel.{channel}', function ($user, Channel $channel) {
+    return $channel->users->contains('id', $user->id);
 });

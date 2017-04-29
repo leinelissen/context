@@ -35,7 +35,7 @@
             });
 
             // Then install a listener for any new messages
-            Echo.join("chat")
+            Echo.join("Channel." + this.channelid)
                 .listen("MessageCreated", e => {
                     this.messages.push(e.message);
                     this.scrollToBottom();

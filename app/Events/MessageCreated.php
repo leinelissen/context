@@ -25,6 +25,13 @@ class MessageCreated implements ShouldBroadcast
     public $message;
 
     /**
+     * The channel the message is sent on
+     *
+     * @var Channel
+     */
+    private $channel;
+
+    /**
      * Create a new event instance.
      *
      * @return void
@@ -35,6 +42,7 @@ class MessageCreated implements ShouldBroadcast
         $this->message = $this->message->merge([
             "user" => $message->user
         ]);
+        $this->channel = $message->channel;
     }
 
     /**
@@ -44,6 +52,6 @@ class MessageCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat');
+        return new PresenceChannel('Channel.' . $this->channel->id);
     }
 }

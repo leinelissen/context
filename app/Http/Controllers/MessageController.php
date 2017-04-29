@@ -46,7 +46,12 @@ class MessageController extends Controller
 
         // Fetch current user and designated channel
         $user = Auth::user();
-        $channel = channel::find($request->channel_id);
+        $channel = Channel::find($request->channel_id);
+
+        // Check if user has access to said channel
+        if (!$channel->users->contains('id', $user->id)) {
+            abort('403');
+        }
 
         // Create new message
         $message = new Message([
