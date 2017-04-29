@@ -14,7 +14,7 @@
             @endif
 
             <label for="last_name">Last name</label>
-            <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required autofocus>
+            <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required>
 
             @if ($errors->has('last_name'))
                 <strong>{{ $errors->first('last_name') }}</strong>
