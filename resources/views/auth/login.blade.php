@@ -33,6 +33,10 @@
             <a class="center" href="{{ route('password.request') }}">
                 Forgot Your Password?
             </a>
+
+            <a class="center" href="{{ route('register')}}">
+                Do you require an account?
+            </a>
         </form>
     </div>
 @endsection
