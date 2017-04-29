@@ -13,26 +13,11 @@
                 <strong>{{ $errors->first('email') }}</strong>
             @endif
 
-            <label for="password" class="col-md-4 control-label">Password</label>
-            <input id="password" type="password" name="password" required>
-
-            @if ($errors->has('password'))
-                <strong>{{ $errors->first('password') }}</strong>
-            @endif
-
-            <label>
-                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-            </label>
-
             <button type="submit">
-                Login
+                Send login link
             </button>
 
             <br><br>
-
-            <a class="center" href="{{ route('password.request') }}">
-                Forgot Your Password?
-            </a>
 
             <a class="center" href="{{ route('register')}}">
                 Do you require an account?

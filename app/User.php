@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany("App\Channel");
     }
+
+    /**
+     * Get the loginRequests for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function loginRequests()
+    {
+        return $this->hasMany("App\LoginRequest");
+    }
 }

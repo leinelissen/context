@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Channel;
+use App\Mail\UserCreated;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -73,6 +75,9 @@ class RegisterController extends Controller
         // NOTE: DO NOT USE IN PRODUCTION
         $channels = Channel::where('group', '=', '1');
         $user->channels()->attach($channels->pluck('id'));
+
+        // Notify user of creation
+        Mail::to($user)->send(new UserCreated($user));
 
         return $user;
     }

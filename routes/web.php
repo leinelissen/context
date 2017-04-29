@@ -18,3 +18,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
+Route::get('auth/token/{token}', '\App\Http\Controllers\Auth\LoginController@authenticateToken');
