@@ -12,10 +12,15 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'BootstrapController@getChannels');
+    Route::get('/', 'BootstrapController@getChannels')->name('home');
     Route::get('/channel/{id}', 'BootstrapController@getChannel')->middleware("ownedByUser");
-    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 });
 
-Auth::routes();
-Route::get('auth/token/{token}', '\App\Http\Controllers\Auth\LoginController@authenticateToken');
+Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::get('logout', 'LoginController@logout')->name('logout');
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'RegisterController@register');
+    Route::get('token/{token}', 'LoginController@authenticateToken');
+});
