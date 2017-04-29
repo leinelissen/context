@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Channel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +63,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // This will associate a new user with all existing group channels
+        // NOTE: DO NOT USE IN PRODUCTION
+        $channels = Channel::where('group', '=', '1');
+        $user->channels()->attach($channels->pluck('id'));
+
+        return $user;
     }
 }
