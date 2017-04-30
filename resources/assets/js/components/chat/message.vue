@@ -1,6 +1,6 @@
 <template>
     <div class="message" v-bind:class="{self: (message.user.id === userid)}">
-        <span>{{ message.message }}</span>
+        <p>{{ message.message }}</p>
     </div>
 </template>
 
@@ -36,7 +36,7 @@
         }
     }
 
-    span{
+    p{
         background-image: $grey-dark-gradient;
         color: $white;
         display: inline-block;
@@ -44,6 +44,7 @@
         max-width: 80%;
         border-radius: $border-radius $border-radius $border-radius 0;
         text-align: left;
+        margin: 0;
 
         @media($media-min-width){
             padding: 0.75em 1em;
@@ -53,13 +54,13 @@
     div.self{
         text-align: right;
 
-        span{
+        p{
             background-image: $blue-gradient;
             border-radius: $border-radius $border-radius 0 $border-radius;
         }
 
         &:after{
-            border-bottom: $triangle-size solid $blue;
+            border-bottom: $triangle-size solid $blue-dark;
             border-right: $triangle-size solid transparent;
             border-left: 0;
             right: -$triangle-size;
