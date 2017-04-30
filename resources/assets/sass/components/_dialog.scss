@@ -20,8 +20,13 @@ div.dialog{
 
     .icon{
         text-align: center;
-        padding-top: 125px;
-        padding-bottom: 50px;
+        padding-top: 100px;
+        padding-bottom: 0px;
+
+        @media($media-min-width){
+            padding-top: 150px;
+            padding-bottom: 50px;
+        }
 
         img{
             width: 100px;
