@@ -48,7 +48,7 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-    border: 2px solid $blue;
+    border: 1px solid $grey-light;
     outline: 0;
 }
 

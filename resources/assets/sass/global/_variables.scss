@@ -9,15 +9,15 @@ $grey-dark: #252525;
 $grey: #686868;
 $grey-light: #dedede;
 $grey-very-light: #f5f5f5;
-$blue: #40B2FF;
-$blue-light: #00C1FF;
+$blue: #00C1FF;
+$blue-dark: #0098FF;
 
 // Define brand colours
 $brand-primary: $blue;
-$brand-secondary: $blue-light;
+$brand-secondary: $blue-dark;
 
 // Define gradients
-$blue-gradient: linear-gradient(-180deg, $blue-light 0%, $blue 75%);
+$blue-gradient: linear-gradient(0deg, $blue-dark 0%, $blue 75%);
 $grey-gradient: linear-gradient(-180deg, #888888 0%, $grey 75%);
 $grey-dark-gradient: linear-gradient(-180deg, #444444 0%, $grey-dark 75%);
 

@@ -14,11 +14,7 @@
         <title>{{ config('app.name') }}</title>
     </head>
     <body>
-        @include('components.nav')
-
-        <div id="app">
-            @yield('content')
-        </div>
+        @yield('body')
 
         @if(Auth::check())
             <script type="text/javascript">
