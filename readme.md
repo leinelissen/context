@@ -1,18 +1,11 @@
 <p align="center">
-    <img src="http://i.imgur.com/r0MreWz.png" width="400px">
+    <img src="http://i.imgur.com/4ljS4Wy.png" width="400px">
 </p>
 
 Context is a really cool instant messaging app for schools. It is currently in development.
 
-### How does it work?
+# How does it work?
 Context is built upon the beautiful [Laravel](https://laravel.com) framework. It relies heavily upon the Laravel ecosystem to get things going.
-
-Technologies included:
-* [VueJS](http://vuejs.org)
-* [Socket.IO](https://socket.io)
-* [ESLint](http://eslint.org)
-* [Laravel Echo](https://github.com/laravel/echo)
-* [Laravel Passport](https://github.com/laravel/passport)
 
 # How do I set it up?
 This package primarily includes the code and install scripts. It is recommended to start a virtual server over at DigitalOcean or Linode and setup from there.
@@ -29,7 +22,7 @@ This package primarily includes the code and install scripts. It is recommended 
 * Yarn
 * Composer
 
-### Setup
+## Setup
 1. Git clone this repository in your web root
 2. Copy `.env.example` to `.env` and change its contents to match your web server setup.
 3. Call `composer install` from the command-line to install all required PHP packages.
@@ -47,3 +40,6 @@ However, to run this command as the logged in user is just bad practice. So to m
 
 1. Install forever by calling `yarn global add forever`
 2. Call `forever start ./node_modules/.bin/laravel-echo-server start`
+
+## Notes
+* Ensure that your server either has 2GB of RAM available or has swap enabled. Webpack requires this in order to compile its assets.

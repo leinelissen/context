@@ -8,7 +8,7 @@
             @endif
         </div>
         <div class="middle">
-            <img src="{{URL::to('images/context-white.svg')}}">
+            <img src="{{URL::to('images/context-icon-white.svg')}}">
         </div>
         <div class="right">
         </div>
