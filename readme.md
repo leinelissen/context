@@ -2,10 +2,16 @@
     <img src="http://i.imgur.com/4ljS4Wy.png" width="400px">
 </p>
 
-Context is a really cool instant messaging app for schools. It is currently in development.
+<p align="center">
+Context is an instant messaging app for schools.
+</p>
+
+&nbsp;
 
 # How does it work?
 Context is built upon the beautiful [Laravel](https://laravel.com) framework. It relies heavily upon the Laravel ecosystem to get things going.
+
+&nbsp;
 
 # How do I set it up?
 This package primarily includes the code and install scripts. It is recommended to start a virtual server over at DigitalOcean or Linode and setup from there.
