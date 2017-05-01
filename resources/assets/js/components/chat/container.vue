@@ -6,7 +6,7 @@
                 :message="message"
                 :key="message.id">
             </chat-message>
-            <div class="empty" v-show="messages.lenth === 0">
+            <div class="empty" v-show="messages.length === 0">
                 No messages to show.
             </div>
         </div>
