@@ -1,10 +1,12 @@
 <template>
     <div class="message" v-bind:class="{self: (message.user.id === userid)}">
-        <div class="info">
-            <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
-            <span class="time">{{ message.created_at }}</span>
+        <div class="flex-container">
+            <div class="info">
+                <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
+                <span class="time">{{ message.created_at }}</span>
+            </div>
+            <p>{{ message.message }}</p>
         </div>
-        <p>{{ message.message }}</p>
     </div>
 </template>
 
@@ -26,11 +28,12 @@
     // Set other variables
     $triangle-size: 10px;
 
-    div.message{
+    div.flex-container{
         position: relative;
         margin: 0.5em 1.5em 0 1.5em;
-        flex-basis: 80%;
-        display: inline-block;
+        display: inline-flex;
+        max-width: 80%;
+        flex-direction: column;
 
         &:after{
             content: "";
@@ -76,11 +79,12 @@
                 opacity: 0.1;
                 margin-top: 15px;
                 transition: 0.1s all ease;
+                margin-left: auto;
             }
         }
     }
 
-    div.self{
+    div.message.self{
         text-align: right;
 
         p{
@@ -88,11 +92,7 @@
             border-radius: $border-radius $border-radius 0 $border-radius;
         }
 
-        div.info{
-            justify-content: flex-end;
-        }
-
-        &:after{
+        div.flex-container:after{
             border-bottom: $triangle-size solid $blue-dark;
             border-right: $triangle-size solid transparent;
             border-left: 0;

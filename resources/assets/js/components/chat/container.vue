@@ -1,13 +1,15 @@
 <template>
     <div class="chat-container">
         <div class="container">
-            <chat-message
-                v-for="message in messages"
-                :message="message"
-                :key="message.id">
-            </chat-message>
-            <div class="empty" v-show="messages.length === 0">
-                No messages to show.
+            <div class="messages">
+                <chat-message
+                    v-for="message in messages"
+                    :message="message"
+                    :key="message.id">
+                </chat-message>
+                <div class="empty" v-show="messages.length === 0">
+                    No messages to show.
+                </div>
             </div>
         </div>
         <chat-reply
@@ -70,7 +72,7 @@
             },
             scrollToBottom() {
                 // Target containing div
-                var container = this.$el.querySelector(".chat-container > div");
+                var container = this.$el.querySelector(".chat-container .messages");
 
                 // Scroll to bottom of containing div
                 // NOTE: The scroll function is executed with a sligt timeout,
@@ -87,9 +89,14 @@
     // Import global variables
     @import "../../../sass/vue";
 
-    div.container{
+    div.messages{
         height: 100%;
         padding: 75px 0;
+
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
 
         // Enable inertial scrolling for iOS devices
         overflow-y: scroll;
