@@ -78,7 +78,7 @@ class LoginController extends Controller
             return view('auth.link-expired');
         }
 
-        Auth::login($loginRequest->user);
+        Auth::login($loginRequest->user, true);
 
         return redirect($this->redirectTo);
     }
