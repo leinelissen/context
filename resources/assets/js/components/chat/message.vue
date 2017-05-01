@@ -30,7 +30,7 @@
 
     div.flex-container{
         position: relative;
-        margin: 0.5em 1.5em 0 1.5em;
+        margin: 2px $triangle-size;
         display: inline-flex;
         max-width: 80%;
         flex-direction: column;

@@ -125,7 +125,6 @@
     .channels{
         h4{
             padding-left: 20px;
-            text-transform: uppercase;
         }
 
         ul{
