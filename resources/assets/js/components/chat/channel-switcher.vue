@@ -82,25 +82,39 @@
         z-index: 11;
         background: $grey-dark;
         color: white;
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         transition: width 0.1s ease;
         overflow: hidden;
 
+        @media($media-min-width){
+            width: 70px;
+            height: 70px;
+        }
+
         &.active{
-            width: 300px;
+            width: 100%;
             height: 100%;
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
+
+            @media($media-min-width){
+                width: 300px;
+            }
         }
     }
 
     a.activator{
         display: flex;
-        height: 70px;
-        width: 70px;
+        height: 50px;
+        width: 50px;
         justify-content: center;
         align-items: center;
+
+        @media($media-min-width){
+            width: 70px;
+            height: 70px;
+        }
     }
 
     a{
