@@ -12,15 +12,11 @@ require("./bootstrap.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const chatContainer = Vue.component("chat-container", require("./components/chat/container.vue"));
-const chatMessage = Vue.component("chat-message", require("./components/chat/message.vue"));
-const chatReply = Vue.component("chat-reply", require("./components/chat/reply.vue"));
+Vue.component("chat-container", require("./components/chat/container.vue"));
+Vue.component("chat-message", require("./components/chat/message.vue"));
+Vue.component("chat-reply", require("./components/chat/reply.vue"));
+Vue.component("chat-channel-switcher", require("./components/chat/channel-switcher.vue"));
 
 const app = new Vue({
-    el: "#app",
-    components:{
-        "chat-container": chatContainer,
-        "chat-message": chatMessage,
-        "chat-reply": chatReply
-    }
+    el: "#app"
 });

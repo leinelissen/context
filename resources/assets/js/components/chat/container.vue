@@ -1,5 +1,9 @@
 <template>
     <div class="chat-container">
+        <chat-channel-switcher
+            v-on:switchchannel="switchChannel"
+            :currentChannel="currentChannelId">
+        </chat-channel-switcher>
         <div class="container">
             <div class="messages">
                 <chat-message
@@ -26,24 +30,35 @@
         data() {
             return{
                 messages: [],
+                currentChannel: "",
+                currentChannelId: 0,
             };
         },
         created(){
-            // Firstly, retrieve all current messages
-            axios.get("/api/channel/" + this.channelid)
-            .then(response => {
-                this.messages = response.data;
-                this.scrollToBottom();
-            });
-
-            // Then install a listener for any new messages
-            Echo.join("Channel." + this.channelid)
-                .listen("MessageCreated", e => {
-                    this.messages.push(e.message);
-                    this.scrollToBottom();
-                });
+            this.init(this.channelid);
         },
         methods: {
+            init(channelid) {
+                // Firstly, retrieve all current messages
+                axios.get("/api/channel/" + channelid)
+                .then(response => {
+                    this.messages = response.data;
+                    this.scrollToBottom();
+                });
+
+                // Leave any current channels
+                Echo.leave(this.currentChannel);
+
+                // Then install a listener for any new messages
+                Echo.join("Channel." + channelid)
+                    .listen("MessageCreated", e => {
+                        this.messages.push(e.message);
+                        this.scrollToBottom();
+                });
+
+                this.currentChannel = "Channel." + channelid;
+                this.currentChannelId = channelid;
+            },
             addMessage(message) {
                 // Add channelid to object
                 message.channel_id = this.channelid;
@@ -70,16 +85,18 @@
                     console.log(error);
                 });
             },
+            switchChannel(id) {
+                this.init(id);
+            },
             scrollToBottom() {
                 // Target containing div
-                var container = this.$el.querySelector(".chat-container .messages");
 
                 // Scroll to bottom of containing div
                 // NOTE: The scroll function is executed with a sligt timeout,
                 // so we can wait for the element to be added to the dom
                 setTimeout(function(){
-                    container.scrollTop = container.scrollHeight;
-                }, 1);
+                    window.scrollTo(0,document.body.scrollHeight);
+                }, 100);
             }
         }
     };
@@ -91,7 +108,7 @@
 
     div.messages{
         height: 100%;
-        padding: 75px 0;
+        padding: 85px 0;
 
         flex-direction: column;
         flex-wrap: wrap;

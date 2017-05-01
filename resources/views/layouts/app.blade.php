@@ -19,6 +19,7 @@
         @if(Auth::check())
             <script type="text/javascript">
                 window.userid = {{ Auth::id() }};
+                window.base_url = "{{ URL::to('/') }}";
                 @stack('js_variables')
             </script>
         @endif

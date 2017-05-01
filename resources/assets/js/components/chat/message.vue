@@ -92,6 +92,17 @@
             border-radius: $border-radius $border-radius 0 $border-radius;
         }
 
+        div.info{
+            height: 0px;
+            transition: all 0.1s ease;
+        }
+
+        .flex-container:hover{
+            div.info{
+                height: 18px;
+            }
+        }
+
         div.flex-container:after{
             border-bottom: $triangle-size solid $blue-dark;
             border-right: $triangle-size solid transparent;
