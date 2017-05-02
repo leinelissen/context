@@ -63,7 +63,10 @@ class ChannelController extends Controller
      */
     public function show(Channel $channel)
     {
-        return $channel->messages->load('user');
+        return [
+            "channel" => $channel,
+            "messages" => $channel->messages->load('user')
+        ];
     }
 
     /**

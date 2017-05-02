@@ -4,6 +4,16 @@
             v-on:switchchannel="switchChannel"
             :currentChannel="currentChannelId">
         </chat-channel-switcher>
+        <div class="channel"
+            v-bind:class="{group: channel.group}">
+            <div class="container">
+                <h2>{{ channel.name_extension }} <span>{{ channel.name }}</span></h2>
+                <p>
+                    <b>Laatste mededeling:</b>
+                    {{ channel.announcement }}
+                </p>
+            </div>
+        </div>
         <div class="container">
             <div class="messages">
                 <chat-message
@@ -30,6 +40,7 @@
         data() {
             return{
                 messages: [],
+                channel: {},
                 currentChannel: "",
                 currentChannelId: 0,
             };
@@ -42,7 +53,10 @@
                 // Firstly, retrieve all current messages
                 axios.get("/api/channel/" + channelid)
                 .then(response => {
-                    this.messages = response.data;
+                    console.log(response.data);
+
+                    this.messages = response.data.messages;
+                    this.channel = response.data.channel;
                     this.scrollToBottom();
                 });
 
@@ -118,6 +132,43 @@
         // Enable inertial scrolling for iOS devices
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
+    }
+
+    div.channel{
+        position: fixed;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        z-index: 10;
+        background-color: $grey-light;
+        padding: 20px 0;
+
+        @media($media-min-width){
+            top: 70px;
+        }
+
+        &.group{
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 24px;
+
+            @media($media-min-width){
+                font-size: 32px;
+            }
+
+            span{
+                border-left: 8px solid $blue;
+                padding-left: 15px;
+                font-weight: 800;
+            }
+        }
+
+        p{
+            margin-bottom: 0;
+        }
     }
 
     div.chat-container{
