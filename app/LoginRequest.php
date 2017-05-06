@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class LoginRequest extends Model
 {
     /**
-     * Time in minutes that a login request is valid
+     * Time in minutes that a login request is valid.
      *
-     * @var Integer
+     * @var int
      */
     public $expires = 10;
 
@@ -20,28 +20,29 @@ class LoginRequest extends Model
      * @var array
      */
     protected $fillable = [
-        "user_id",
-        "token"
+        'user_id',
+        'token',
     ];
 
     /**
-     * Create a login request for a particular user
+     * Create a login request for a particular user.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return LoginRequest
      */
     public static function createForUser(User $user)
     {
         return self::create([
             'user_id' => $user->id,
-            'token' => bin2hex(random_bytes(32))
+            'token'   => bin2hex(random_bytes(32)),
         ]);
     }
 
     /**
-     * Check if the LoginRequest has not expired yet
+     * Check if the LoginRequest has not expired yet.
      *
-     * @return boolean
+     * @return bool
      */
     public function isValid()
     {

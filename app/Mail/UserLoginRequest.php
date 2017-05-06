@@ -2,27 +2,25 @@
 
 namespace App\Mail;
 
-use App\User;
 use App\LoginRequest;
-
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserLoginRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * The supplied loginRequest
+     * The supplied loginRequest.
      *
      * @var LoginRequest
      */
     public $loginRequest;
 
     /**
-     * The associated user
+     * The associated user.
      *
      * @var User
      */
@@ -32,6 +30,7 @@ class UserLoginRequest extends Mailable
      * Create a new message instance.
      *
      * @param LoginRequest $loginRequest
+     *
      * @return void
      */
     public function __construct(LoginRequest $loginRequest)

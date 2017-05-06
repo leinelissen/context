@@ -4,28 +4,26 @@ namespace App\Events;
 
 use App\Message;
 use App\User;
-
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class MessageCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * The supplied new message
+     * The supplied new message.
      *
      * @var Message
      */
     public $message;
 
     /**
-     * The channel the message is sent on
+     * The channel the message is sent on.
      *
      * @var Channel
      */
@@ -40,7 +38,7 @@ class MessageCreated implements ShouldBroadcast
     {
         $this->message = collect($message);
         $this->message = $this->message->merge([
-            "user" => $message->user
+            'user' => $message->user,
         ]);
         $this->channel = $message->channel;
     }
@@ -52,6 +50,6 @@ class MessageCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('Channel.' . $this->channel->id);
+        return new PresenceChannel('Channel.'.$this->channel->id);
     }
 }

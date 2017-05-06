@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Channel;
-use App\Mail\UserCreated;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\UserCreated;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -45,30 +45,32 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'last_name'  => 'required|max:255',
+            'email'      => 'required|email|max:255|unique:users',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         $user = User::create([
             'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
+            'last_name'  => $data['last_name'],
+            'email'      => $data['email'],
         ]);
 
         // This will associate a new user with all existing group channels
