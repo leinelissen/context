@@ -3,18 +3,16 @@
 namespace App\Mail;
 
 use App\User;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * The user to which the email is addressed
+     * The user to which the email is addressed.
      *
      * @var User
      */

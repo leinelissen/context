@@ -31,15 +31,16 @@ class ChannelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         // Validate input data
         $this->validate($request, [
-            "group" => "required|boolean",
-            "name" => "nullable|string",
+            'group' => 'required|boolean',
+            'name'  => 'nullable|string',
         ]);
 
         // Fetch current user
@@ -47,8 +48,8 @@ class ChannelController extends Controller
 
         // Create new message
         $channel = new Channel([
-            "group" => $request->group,
-            "name" => $request->name
+            'group' => $request->group,
+            'name'  => $request->name,
         ]);
 
         // Assign new message to current user
@@ -58,21 +59,23 @@ class ChannelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Room  $channel
+     * @param \App\Room $channel
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Channel $channel)
     {
         return [
-            "channel" => $channel,
-            "messages" => $channel->messages->load('user')
+            'channel'  => $channel,
+            'messages' => $channel->messages->load('user'),
         ];
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Room  $channel
+     * @param \App\Room $channel
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Channel $channel)
@@ -83,8 +86,9 @@ class ChannelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $channel
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Room                $channel
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Channel $channel)
@@ -95,7 +99,8 @@ class ChannelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Room  $channel
+     * @param \App\Room $channel
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Channel $channel)

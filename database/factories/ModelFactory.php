@@ -17,14 +17,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'first_name' => $faker->firstName,
-        'last_name' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
+        'last_name'  => $faker->lastName,
+        'email'      => $faker->unique()->safeEmail,
     ];
 });
 
 $factory->define(App\Message::class, function (Faker\Generator $faker) {
     return [
-        'message' => $faker->text,
+        'message'    => $faker->text,
         'channel_id' => function () {
             return App\Channel::inRandomOrder()->get()->first()->id;
         },

@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Channel;
+use Closure;
 use Illuminate\Support\Facades\Auth;
 
 class ChannelIsOwnedByUser
@@ -11,8 +11,9 @@ class ChannelIsOwnedByUser
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -21,7 +22,7 @@ class ChannelIsOwnedByUser
 
         if (!isset($parameters['id'])) {
             return redirect('/');
-        };
+        }
 
         $channel = Channel::findOrFail($parameters['id']);
         $users = $channel->users;

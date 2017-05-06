@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\LoginRequest;
 use App\Mail\UserLoginRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Auth;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -44,15 +44,16 @@ class LoginController extends Controller
     }
 
     /**
-     * Override default login routine with email magic links
+     * Override default login routine with email magic links.
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return View
      */
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|exists:users'
+            'email' => 'required|email|exists:users',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -65,9 +66,10 @@ class LoginController extends Controller
     }
 
     /**
-     * Verify a token link and login user
+     * Verify a token link and login user.
      *
-     * @param  String $token
+     * @param string $token
+     *
      * @return Response
      */
     public function authenticateToken($token)

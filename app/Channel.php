@@ -12,16 +12,16 @@ class Channel extends Model
      * @var array
      */
     protected $fillable = [
-        "name"
+        'name',
     ];
 
     /**
-     * The attributes that should be cast to a certain type
+     * The attributes that should be cast to a certain type.
      *
      * @var array
      */
     protected $casts = [
-        "group" => "boolean"
+        'group' => 'boolean',
     ];
 
     /**
