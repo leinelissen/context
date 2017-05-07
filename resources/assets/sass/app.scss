@@ -1,6 +1,7 @@
 // Bootstrap variables and Normalize.css
 @import "global/variables";
 @import "vendor/normalize.scss";
+@import "vendor/simple-line-icons.scss";
 
 // Import the helpers
 @import "global/helpers";
@@ -16,7 +17,6 @@
 @import "elements/label";
 
 // Import reusable components
-@import "components/nav";
 @import "components/messages";
 @import "components/container";
 @import "components/dialog";
