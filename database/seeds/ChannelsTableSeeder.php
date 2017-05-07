@@ -34,16 +34,16 @@ class ChannelsTableSeeder extends Seeder
     public function __construct()
     {
         $this->names = [
-            'Frans 🇫🇷',
-            'Duits 🇩🇪',
-            'Engels 🇬🇧',
-            'Nederlands 🇳🇱',
-            'Maatschappijleer',
-            'Wiskunde',
-            'Scheikunde',
-            'Natuurkunde',
-            'Economie',
-            'Geschiedenis',
+            'French 🇫🇷',
+            'German 🇩🇪',
+            'English 🇬🇧',
+            'Dutch 🇳🇱',
+            'Social Science',
+            'Mathematics',
+            'Chemistry',
+            'Physics',
+            'Economy',
+            'History',
         ];
 
         $this->extensions = collect([
@@ -55,13 +55,13 @@ class ChannelsTableSeeder extends Seeder
         ]);
 
         $this->announcements = collect([
-            'Het huiswerk is opdracht 1 t/m 12 van hoofdstuk vier.',
-            'Voor donderdag: 3.1, 3.2 en 3.4',
-            'As dinsdag: opdrachten 1, 2 en 3a',
-            'Aankomende maandag so van hoofdstuk 11',
-            'Woensdag proefwerk over Hoofdstuk 1, 2, 3, 4 & 5',
-            'Jullie eerste schoolexamen staat voor de deur. Oefen alvast met de opdrachten uit de reader.',
-            'Fijne vakantie, ik zie jullie op woensdag weer.',
+            'Your homework is assignments 1 to 12 from chapter three.',
+            'For Thursday: 3.1, 3.2 en 3.4',
+            'Next tuesday: assignments 1, 2 en 3a',
+            'Next monday you will have a test on chapter 11',
+            'Wednesday: test of chapters 1 to 5',
+            'Your first school exam is right around the corner. Try practicing with the assignments from the reader.',
+            'Have a nice holiday! I will see you in two weeks.',
         ]);
     }
 
