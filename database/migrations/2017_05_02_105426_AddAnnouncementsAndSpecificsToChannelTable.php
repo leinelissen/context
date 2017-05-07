@@ -14,8 +14,8 @@ class AddAnnouncementsAndSpecificsToChannelTable extends Migration
     public function up()
     {
         Schema::table('channels', function (Blueprint $table) {
-            $table->text('announcement');
-            $table->string('name_extension');
+            $table->text('announcement')->nullable();
+            $table->string('name_extension')->nullable();
         });
     }
 
