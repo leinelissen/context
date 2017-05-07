@@ -4,12 +4,13 @@
             v-on:switchchannel="switchChannel"
             :currentChannel="currentChannelId">
         </chat-channel-switcher>
-        <div class="channel"
-            v-bind:class="{group: channel.group}">
+        <div class="channel-name">
+            <h2>{{ channel.name_extension }} <b>{{ channel.name }}</b></h2>
+        </div>
+        <div v-if="channel.group" class="channel-announcement">
             <div class="container">
-                <h2>{{ channel.name_extension }} <span>{{ channel.name }}</span></h2>
                 <p>
-                    <b>Laatste mededeling:</b>
+                    <b>Last announcement:</b>
                     {{ channel.announcement }}
                 </p>
             </div>
@@ -134,36 +135,55 @@
         -webkit-overflow-scrolling: touch;
     }
 
-    div.channel{
+
+    div.channel-announcement,
+    div.channel-name{
         position: fixed;
         left: 0;
-        top: 50px;
+        top: 0;
         width: 100%;
         z-index: 10;
+    }
+
+    div.channel-name{
+        height: 60px;
         background-color: $grey-light;
-        padding: 20px 0;
-
-        @media($media-min-width){
-            top: 70px;
-        }
-
-        &.group{
-            text-align: center;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         h2 {
             font-weight: 500;
             font-size: 24px;
+            margin: 0;
+            margin-left: 60px;
 
             @media($media-min-width){
                 font-size: 32px;
+                margin-left: 0;
             }
 
-            span{
-                border-left: 8px solid $blue;
-                padding-left: 15px;
+            b{
                 font-weight: 800;
             }
+        }
+
+        @media($media-min-width){
+            font-size: 32px;
+            height: 70px;
+            margin-left: 0;
+        }
+
+    }
+
+    div.channel-announcement{
+        top: 60px;
+        background-color: $grey-very-light;
+        padding: 15px 0;
+
+        @media($media-min-width){
+            top: 70px;
+            padding: 25px 0;
         }
 
         p{

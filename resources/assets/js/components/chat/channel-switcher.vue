@@ -1,7 +1,8 @@
 <template>
     <section v-bind:class="{active: isActive}">
         <a href="#" class="activator" v-on:click.prevent="isActive = !isActive">
-            OP
+            <img v-if="!isActive" src="/images/context-icon-white.svg">
+            <i v-if="isActive" class="icons icon-close"></i>
         </a>
         <div class="channels" v-show="isActive">
 
@@ -82,8 +83,8 @@
         z-index: 11;
         background: $grey-dark;
         color: white;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         transition: width 0.1s ease;
         overflow: hidden;
 
@@ -98,6 +99,10 @@
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
 
+            a.activator{
+                background: transparent;
+            }
+
             @media($media-min-width){
                 width: 300px;
             }
@@ -106,14 +111,25 @@
 
     a.activator{
         display: flex;
-        height: 50px;
-        width: 50px;
+        height: 60px;
+        width: 60px;
         justify-content: center;
         align-items: center;
+        background-image: $blue-gradient;
+        margin-bottom: 25px;
 
         @media($media-min-width){
             width: 70px;
             height: 70px;
+        }
+
+        img{
+            height: 20px;
+            width: auto;
+        }
+
+        i{
+            font-size: 22px;
         }
     }
 

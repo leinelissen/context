@@ -10,8 +10,23 @@ div.dialog{
         border-color: $white;
     }
 
-    h1, h2, h3, h4, h5, h6, p{
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p{
         text-align: center;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     }
 
     a{
