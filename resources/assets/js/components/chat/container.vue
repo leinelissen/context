@@ -73,7 +73,7 @@
                             "title": "New message from " + e.message.user.first_name + " " + e.message.user.last_name,
                             "message": "\"" + e.message.message + "\""
                         });
-                });
+                    });
 
                 this.currentChannel = "Channel." + channelid;
                 this.currentChannelId = channelid;
@@ -98,7 +98,7 @@
 
                     // Then show new message by scrolling
                     this.scrollToBottom();
-               })
+                })
                 .catch(error => {
                     alert("Your message could not be sent!");
                     console.log(error);

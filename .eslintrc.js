@@ -17,6 +17,8 @@ module.exports = {
         "vue": true,
         "app": true,
         "axios": true,
+        "Echo": true,
+        "iziToast": true
     },
     "rules": {
         "indent": [
