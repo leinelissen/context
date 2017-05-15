@@ -1,7 +1,10 @@
 // Bootstrap variables and Normalize.css
 @import "global/variables";
 @import "vendor/normalize.scss";
+
+// Import vendor files
 @import "vendor/simple-line-icons.scss";
+@import "vendor/izitoast.scss";
 
 // Import the helpers
 @import "global/helpers";

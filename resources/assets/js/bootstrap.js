@@ -37,3 +37,18 @@ window.Echo = new Echo({
     broadcaster: "socket.io",
     host: window.location.hostname + ":6001"
 });
+
+/**
+ * iziToast
+ * ----------------------------------------------------------------
+ * iziToast is a library for showing simple in-browser notifications
+ */
+
+window.iziToast = require("iziToast");
+window.iziToast.settings({
+    timeout: 15000,
+    resetOnHover: true,
+    transitionIn: "fadeInLeft",
+    transitionOut: "fadeOutRight",
+    position: "topRight",
+});
