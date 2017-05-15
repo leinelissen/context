@@ -9,9 +9,16 @@
             <div>
                 <div class="flex-header">
                     <h4>Channels</h4>
-                    <a href="#">
+                    <a class="dialog-switch" href="#"
+                        v-on:click.prevent="createChannel = !createChannel; createUserChannel = false"
+                        v-bind:class="{active: createChannel}">
                         <i class="icons icon-plus"></i>
                     </a>
+                </div>
+                <div class="create-dialog"
+                    v-bind:class="{active: createChannel}">
+                    <h4>Create New Channel</h4>
+                    <p>Which channel would you like to use as basis?</p>
                 </div>
                 <ul v-if="channels.group.length > 0">
                     <li
@@ -28,9 +35,16 @@
             <div>
                 <div class="flex-header">
                     <h4>Users</h4>
-                    <a href="#">
+                    <a class="dialog-switch" href="#"
+                        v-bind:class="{active: createUserChannel}"
+                        v-on:click.prevent="createUserChannel = !createUserChannel; createChannel = false">
                         <i class="icons icon-plus"></i>
                     </a>
+                </div>
+                <div class="create-dialog"
+                    v-bind:class="{active: createUserChannel}">
+                    <h4>Create New Chat</h4>
+                    <p>With whom would you like to connect?</p>
                 </div>
                 <ul v-if="channels.user.length > 0">
                     <li
@@ -61,6 +75,8 @@
                     "user": []
                 },
                 isActive: false,
+                createChannel: false,
+                createUserChannel: false,
             };
         },
         created(){
@@ -188,13 +204,53 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
 
             & > *{
                 margin-bottom: 0;
+                padding: 0 20px;
+            }
 
-                &:last-child{
-                    padding-right: 20px;
+            a{
+                padding: 5px 20px;
+            }
+        }
+
+        .create-dialog{
+            background-image: $blue-gradient;
+            transition: all 0.1s ease;
+            overflow: hidden;
+            max-height: 0;
+            padding: 0;
+
+            &.active{
+                max-height: 800px;
+                padding: 20px;
+            }
+
+            h4, h6{
+                padding: 0;
+            }
+        }
+
+        a.dialog-switch{
+            height: 50px;
+            width: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            &.active{
+                background: $blue;
+
+                &:after{
+                    content: "";
+                    position: absolute;
+                    left: -50px;
+                    bottom: 0;
+                    border-left: 50px solid transparent;
+                    border-bottom: 50px solid $blue;
                 }
             }
         }
