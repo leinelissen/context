@@ -6,9 +6,14 @@
         </a>
         <div class="channels" v-show="isActive">
 
-            <div v-if="channels.group.length > 0">
-                <h4>Channels</h4>
-                <ul>
+            <div>
+                <div class="flex-header">
+                    <h4>Channels</h4>
+                    <a href="#">
+                        <i class="icons icon-plus"></i>
+                    </a>
+                </div>
+                <ul v-if="channels.group.length > 0">
                     <li
                         v-for="channel in channels.group"
                         v-bind:class="{active: currentChannel == channel.id}">
@@ -20,9 +25,14 @@
                 </ul>
             </div>
 
-            <div v-if="channels.user.length > 0">
-                <h4>Users</h4>
-                <ul>
+            <div>
+                <div class="flex-header">
+                    <h4>Users</h4>
+                    <a href="#">
+                        <i class="icons icon-plus"></i>
+                    </a>
+                </div>
+                <ul v-if="channels.user.length > 0">
                     <li
                         v-for="channel in channels.user"
                         v-bind:class="{active: currentChannel == channel.id}">
@@ -32,6 +42,9 @@
                         </a>
                     </li>
                 </ul>
+                <h6 v-if="channels.user.length <= 0">
+                    <i>None</i>
+                </h6>
             </div>
 
         </div>
@@ -139,7 +152,7 @@
     }
 
     .channels{
-        h4{
+        h4, h6{
             padding-left: 20px;
         }
 
@@ -167,6 +180,21 @@
 
                 &:hover{
                     background-color: rgba($white, 0.05);
+                }
+            }
+        }
+
+        .flex-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+
+            & > *{
+                margin-bottom: 0;
+
+                &:last-child{
+                    padding-right: 20px;
                 }
             }
         }
