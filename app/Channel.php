@@ -13,7 +13,7 @@ class Channel extends Model
      */
     protected $fillable = [
         'name',
-        'group'
+        'group',
     ];
 
     /**
