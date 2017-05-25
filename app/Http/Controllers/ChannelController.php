@@ -45,7 +45,7 @@ class ChannelController extends Controller
             'group' => 'required|boolean',
             'name'  => 'nullable|string',
             'user'  => 'required_if:group,0|integer',
-            'users' => 'required_if:group,1|array'
+            'users' => 'required_if:group,1|array',
         ]);
 
         // Fetch current user
@@ -66,7 +66,8 @@ class ChannelController extends Controller
 
             if ($check->count() > 0) {
                 $channel = $check->first();
-                $channel->error = "exists";
+                $channel->error = 'exists';
+
                 return $channel;
             }
         }
