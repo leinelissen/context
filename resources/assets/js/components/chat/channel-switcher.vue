@@ -15,11 +15,9 @@
                         <i class="icons icon-plus"></i>
                     </a>
                 </div>
-                <div class="create-dialog"
-                    v-bind:class="{active: createChannel}">
-                    <h4>Create New Channel</h4>
-                    <p>Which channel would you like to use as basis?</p>
-                </div>
+                <chat-create-channel-dialog
+                    :active="createChannel">
+                </chat-create-channel-dialog>
                 <ul v-if="channels.group.length > 0">
                     <li
                         v-for="channel in channels.group"
@@ -41,18 +39,18 @@
                         <i class="icons icon-plus"></i>
                     </a>
                 </div>
-                <div class="create-dialog"
-                    v-bind:class="{active: createUserChannel}">
-                    <h4>Create New Chat</h4>
-                    <p>With whom would you like to connect?</p>
-                </div>
+                <chat-create-chat-dialog
+                    :active="createUserChannel"
+                    v-on:createchat="createChat">
+                </chat-create-chat-dialog>
                 <ul v-if="channels.user.length > 0">
                     <li
                         v-for="channel in channels.user"
                         v-bind:class="{active: currentChannel == channel.id}">
                         <a v-bind:href="channel.id"
-                            v-on:click.prevent="switchChannel(channel.id)">
-                            {{ channel.name }}
+                            v-on:click.prevent="switchChannel(channel.id)"
+                            v-if="channel.users.length">
+                            {{ channel.users[0].first_name }} {{ channel.users[0].last_name }}
                         </a>
                     </li>
                 </ul>
@@ -89,6 +87,8 @@
                 this.channels.user = response.data.filter(function(element){
                     return !element.group;
                 });
+
+                console.log(this.channels.user);
             });
         },
         methods: {
@@ -96,6 +96,17 @@
                 this.$emit("switchchannel", id);
                 history.pushState(null, null, window.base_url + "/channel/" + id);
                 this.isActive = false;
+            },
+            createChat(user){
+                axios.post("/api/channel", {
+                    group: false,
+                    name: null,
+                    user: user.id
+                })
+                .then(response => {
+                    console.log(response.data);
+                    this.channels.push(response.data);
+                });
             }
         }
     };

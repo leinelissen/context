@@ -16,6 +16,8 @@ Vue.component("chat-container", require("./components/chat/container.vue"));
 Vue.component("chat-message", require("./components/chat/message.vue"));
 Vue.component("chat-reply", require("./components/chat/reply.vue"));
 Vue.component("chat-channel-switcher", require("./components/chat/channel-switcher.vue"));
+Vue.component("chat-create-channel-dialog", require("./components/chat/create-channel-dialog.vue"));
+Vue.component("chat-create-chat-dialog", require("./components/chat/create-chat-dialog.vue"));
 
 const app = new Vue({
     el: "#app"
