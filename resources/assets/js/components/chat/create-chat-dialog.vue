@@ -5,7 +5,8 @@
         <p>With whom would you like to connect?</p>
         <input type="text" placeholder="John Appleseed"
             v-model="name"
-            v-on:keyup="findUsers">
+            v-on:keyup="findUsers"
+            ref="usernameInput">
         <ul v-if="users.length > 0">
             <li v-for="user in users">
                 <a href="#"
@@ -69,6 +70,18 @@
                 this.$emit("createchat", user);
                 this.name = null;
                 this.users = [];
+            },
+            focus(){
+                Vue.nextTick(() => {
+                    this.$refs.usernameInput.focus();
+                });
+            }
+        },
+        watch: {
+            active: function (newValue) {
+                if(newValue === true){
+                    this.focus();
+                }
             }
         }
     };
