@@ -68,6 +68,8 @@
             },
             createChat(user){
                 this.$emit("createchat", user);
+                this.name = null;
+                this.users = [];
             }
         }
     };

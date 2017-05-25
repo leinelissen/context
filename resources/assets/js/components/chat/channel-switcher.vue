@@ -104,8 +104,9 @@
                     user: user.id
                 })
                 .then(response => {
-                    console.log(response.data);
-                    this.channels.push(response.data);
+                    this.channels.user.push(response.data);
+                    this.switchChannel(response.data.id);
+                    this.createUserChannel = false;
                 });
             }
         }
@@ -156,7 +157,6 @@
         justify-content: center;
         align-items: center;
         background-image: $blue-gradient;
-        margin-bottom: 25px;
 
         @media($media-min-width){
             width: 70px;
