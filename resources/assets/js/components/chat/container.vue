@@ -68,7 +68,6 @@
                 // Firstly, retrieve all current messages
                 axios.get("/api/channel/" + channelid)
                 .then(response => {
-                    console.log(response.data);
                     this.channel = response.data;
                     this.scrollToBottom();
                 });

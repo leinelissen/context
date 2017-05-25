@@ -49,13 +49,26 @@ class ChannelController extends Controller
         ]);
 
         // Fetch current user
-        $user = Auth::user();
+        $user = Auth::user()->load(['channels', 'channels.users' => function ($query) {
+            $query->where('users.id', '!=', Auth::id());
+        }]);
 
         // Fetch target users
         if ($request->group) {
             $target = User::findorFail($request->users);
         } else {
             $target = User::findOrFail($request->user);
+
+            // Check if a conversation already exists
+            $check = $user->channels->filter(function ($channel, $key) use ($target) {
+                return $channel->users->contains($target) && !$channel->group;
+            });
+
+            if ($check->count() > 0) {
+                $channel = $check->first();
+                $channel->error = "exists";
+                return $channel;
+            }
         }
 
         // Create new message

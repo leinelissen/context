@@ -102,7 +102,10 @@
                     user: user.id
                 })
                 .then(response => {
-                    this.channels.user.push(response.data);
+                    if(response.data.error !== "exists"){
+                        this.channels.user.push(response.data);
+                    }
+                    
                     this.switchChannel(response.data.id);
                     this.createUserChannel = false;
                 });
