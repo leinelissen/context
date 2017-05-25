@@ -87,8 +87,6 @@
                 this.channels.user = response.data.filter(function(element){
                     return !element.group;
                 });
-
-                console.log(this.channels.user);
             });
         },
         methods: {

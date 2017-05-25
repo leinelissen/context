@@ -5,7 +5,13 @@
             :currentChannel="currentChannelId">
         </chat-channel-switcher>
         <div class="channel-name">
-            <h2>{{ channel.name_extension }} <b>{{ channel.name }}</b></h2>
+            <h2 v-if="channel.group">
+                {{ channel.name_extension }} <b>{{ channel.name }}</b>
+            </h2>
+            <h2 v-else>
+                {{ channel.users[0].first_name }}
+                {{ channel.users[0].last_name }}
+            </h2>
         </div>
         <div v-if="channel.group" class="channel-announcement">
             <div class="container">
@@ -18,12 +24,13 @@
         <div class="container">
             <div class="messages">
                 <chat-message
-                    v-for="message in messages"
+                    v-for="message in channel.messages"
                     :message="message"
                     :key="message.id">
                 </chat-message>
-                <div class="empty" v-show="messages.length === 0">
-                    No messages to show.
+                <div class="empty" v-show="channel.messages.length === 0">
+                    No messages yet. Care to strike up a conversation?<br>
+                    ⬇️
                 </div>
             </div>
         </div>
@@ -40,8 +47,15 @@
         ],
         data() {
             return{
-                messages: [],
-                channel: {},
+                channel: {
+                    messages: [],
+                    users: [
+                        {
+                            first_name: "",
+                            last_name: "",
+                        }
+                    ],
+                },
                 currentChannel: "",
                 currentChannelId: 0,
             };
@@ -55,9 +69,7 @@
                 axios.get("/api/channel/" + channelid)
                 .then(response => {
                     console.log(response.data);
-
-                    this.messages = response.data.messages;
-                    this.channel = response.data.channel;
+                    this.channel = response.data;
                     this.scrollToBottom();
                 });
 
@@ -67,7 +79,7 @@
                 // Then install a listener for any new messages
                 Echo.join("Channel." + channelid)
                     .listen("MessageCreated", e => {
-                        this.messages.push(e.message);
+                        this.channel.messages.push(e.message);
                         this.scrollToBottom();
                         iziToast.show({
                             "title": "New message from " + e.message.user.first_name + " " + e.message.user.last_name,
@@ -86,7 +98,7 @@
                 axios.post("/api/message", message)
                 .then(() => {
                     // Add new message to message stack
-                    this.messages.push({
+                    this.channel.messages.push({
                         message: message.message,
                         user:{
                             id: window.userid
@@ -197,6 +209,16 @@
 
     div.chat-container{
         height: 100%;
+    }
+
+    div.empty{
+        text-align: center;
+        line-height: 3;
+        opacity: 0.2;
+
+        &:hover{
+            opacity: 1;
+        }
     }
 
 </style>

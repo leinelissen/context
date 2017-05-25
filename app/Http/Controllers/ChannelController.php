@@ -82,10 +82,9 @@ class ChannelController extends Controller
      */
     public function show(Channel $channel)
     {
-        return [
-            'channel'  => $channel,
-            'messages' => $channel->messages->load('user'),
-        ];
+        return $channel->load(['messages.user', 'users' => function ($query) {
+            $query->where('users.id', '!=', Auth::id());
+        }]);
     }
 
     /**
