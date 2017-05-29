@@ -23,7 +23,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The relations that are eagerly loaded
+     * The relations that are eagerly loaded.
      *
      * @var array
      */
