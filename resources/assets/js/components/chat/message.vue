@@ -21,6 +21,10 @@
         },
         methods: {
             isTeacher(user) {
+                if(typeof user.roles === "undefined"){
+                    return false;
+                }
+
                 var results = user.roles.filter(e => {
                     return e.name === "Teacher";
                 });

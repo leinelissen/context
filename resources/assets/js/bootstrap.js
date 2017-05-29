@@ -46,7 +46,7 @@ window.Echo = new Echo({
 
 window.iziToast = require("iziToast");
 window.iziToast.settings({
-    timeout: 15000,
+    timeout: 45000,
     resetOnHover: true,
     transitionIn: "fadeInLeft",
     transitionOut: "fadeOutRight",
