@@ -12,7 +12,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 30)->create()->each(function ($user) {
-            $user->channels()->attach(App\Channel::all()->pluck('id'));
+            $user->channels()->attach(App\Channel::all());
+            $user->roles()->attach(App\Role::all()->random());
         });
     }
 }

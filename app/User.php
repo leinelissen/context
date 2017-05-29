@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return $this->hasMany("App\LoginRequest");
     }
+
+    /**
+     * Get the roles for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany("App\Role");
+    }
 }
