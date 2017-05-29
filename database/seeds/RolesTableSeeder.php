@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\Role;
+use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
 {
@@ -12,7 +11,7 @@ class RolesTableSeeder extends Seeder
     {
         $this->roles = collect([
             'Teacher',
-            'Student'
+            'Student',
         ]);
     }
 
@@ -25,7 +24,7 @@ class RolesTableSeeder extends Seeder
     {
         foreach ($this->roles as $role) {
             Role::create([
-                'name' => $role
+                'name' => $role,
             ]);
         }
     }

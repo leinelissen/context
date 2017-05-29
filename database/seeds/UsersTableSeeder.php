@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Channel;
 use App\Role;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
