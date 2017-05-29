@@ -1,5 +1,6 @@
 <template>
-    <div class="message" v-bind:class="{self: (message.user.id === userid)}">
+    <div class="message"
+        v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user)}">
         <div class="flex-container">
             <div class="info">
                 <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
@@ -18,6 +19,19 @@
                 userid: window.userid
             };
         },
+        methods: {
+            isTeacher(user) {
+                var results = user.roles.filter(e => {
+                    return e.name === "Teacher";
+                });
+
+                if(results.length > 0){
+                    return true;
+                }
+
+                return false;
+            }
+        }
     };
 </script>
 
@@ -41,7 +55,7 @@
             left: -$triangle-size;
             bottom: 0;
             border-left: $triangle-size solid transparent;
-            border-bottom: $triangle-size solid $grey-dark;
+            border-bottom: $triangle-size solid $grey;
         }
 
         &:hover span.time{
@@ -51,7 +65,7 @@
     }
 
     p{
-        background-image: $grey-dark-gradient;
+        background-image: $grey-gradient;
         color: $white;
         display: inline-block;
         padding: 0.6em 0.9em;
@@ -109,6 +123,16 @@
             border-left: 0;
             right: -$triangle-size;
             left: auto;
+        }
+    }
+
+    div.message.teacher{
+        p{
+            background-image: $grey-dark-gradient;
+        }
+
+        div.flex-container:after{
+            border-bottom: $triangle-size solid $grey-dark;
         }
     }
 </style>

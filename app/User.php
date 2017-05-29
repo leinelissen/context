@@ -23,6 +23,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The relations that are eagerly loaded
+     *
+     * @var array
+     */
+    protected $with = ['roles'];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
