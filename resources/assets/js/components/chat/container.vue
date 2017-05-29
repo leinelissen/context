@@ -4,14 +4,22 @@
             v-on:switchchannel="switchChannel"
             :currentChannel="currentChannelId">
         </chat-channel-switcher>
-        <div class="channel-name">
+        <div class="channel-name"
+            v-bind:class="{ group: channel.group, user: !channel.group}">
             <h2 v-if="channel.group">
                 {{ channel.name_extension }} <b>{{ channel.name }}</b>
             </h2>
-            <h2 v-else>
-                {{ channel.users[0].first_name }}
-                {{ channel.users[0].last_name }}
-            </h2>
+            <div v-else class="container">
+                <div>
+                        <h2 v-if="channel.users.length > 0">
+                        {{ channel.users[0].first_name }}
+                        {{ channel.users[0].last_name }}
+                    </h2>
+                    <p v-if="typeof channel.users[0].roles[0] !== 'undefined'">
+                        {{ channel.users[0].roles[0].name }}
+                    </p>
+                </div>
+            </div>
         </div>
         <div v-if="channel.group" class="channel-announcement">
             <div class="container">
@@ -52,6 +60,11 @@
                         {
                             first_name: "",
                             last_name: "",
+                            roles: [
+                                {
+                                    name: "",
+                                }
+                            ]
                         }
                     ],
                 },
@@ -165,6 +178,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: 100px;
+
+        &.user{
+            h2{
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+
+        .container{
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+        }
 
         h2 {
             font-weight: 500;
@@ -180,6 +207,11 @@
             b{
                 font-weight: 800;
             }
+        }
+
+        p{
+            margin: 0;
+            font-size: 14px;
         }
 
         @media($media-min-width){

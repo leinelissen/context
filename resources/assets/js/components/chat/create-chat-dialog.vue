@@ -11,7 +11,10 @@
             <li v-for="user in users">
                 <a href="#"
                     v-on:click.prevent="createChat(user)">
-                    <span>{{user.first_name}} {{user.last_name}}</span>
+                    <div>
+                        <b>{{user.first_name}} {{user.last_name}}</b>
+                        <span v-if="user.roles.length > 0">{{user.roles[0].name}}</span>
+                    </div>
                     <i class="icons icon-plus"></i>
                 </a>
             </li>
