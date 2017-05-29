@@ -29,8 +29,7 @@
                     :key="message.id">
                 </chat-message>
                 <div class="empty" v-show="channel.messages.length === 0">
-                    No messages yet. Care to strike up a conversation?<br>
-                    ⬇️
+                    No messages yet. Care to strike up a conversation?
                 </div>
             </div>
         </div>
@@ -213,11 +212,13 @@
     div.empty{
         text-align: center;
         line-height: 3;
-        opacity: 0.2;
-
-        &:hover{
-            opacity: 1;
-        }
+        color: $grey;
+        font-weight: 200;
+        opacity: 0.5;
+        position: absolute;
+        width: 100%;
+        bottom: 100px;
+        left: 0;
     }
 
 </style>
