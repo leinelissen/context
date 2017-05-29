@@ -11,14 +11,18 @@
             </h2>
             <div v-else class="container">
                 <div>
-                        <h2 v-if="channel.users.length > 0">
+                    <h2 v-if="channel.users.length > 0">
                         {{ channel.users[0].first_name }}
                         {{ channel.users[0].last_name }}
                     </h2>
-                    <p v-if="typeof channel.users[0].roles[0] !== 'undefined'">
-                        {{ channel.users[0].roles[0].name }}
+                    <p v-if="typeof channel.users[0].roles !== 'undefined'">
+                        <span v-for="(role, index) in channel.users[0].roles">
+                            <span v-if="index > 0">, </span>
+                            {{role.name}}
+                        </span>
                     </p>
                 </div>
+                <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.users[0].id + '.png'">
             </div>
         </div>
         <div v-if="channel.group" class="channel-announcement">
@@ -190,7 +194,14 @@
         .container{
             width: 100%;
             justify-content: space-between;
+            align-items: center;
             display: flex;
+
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+            }
         }
 
         h2 {
