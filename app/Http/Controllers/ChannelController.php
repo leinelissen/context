@@ -16,9 +16,15 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        return Auth::user()->channels->load(['users' => function ($query) {
-            $query->where('users.id', '!=', Auth::id());
-        }]);
+        $channels = Auth::user()->channels()->orderBy('updated_at', 'desc')->get();
+        $channels->each(function ($channel) {
+            if (!$channel->group) {
+                $channel->load(['users' => function ($query) {
+                    $query->where('users.id', '!=', Auth::id());
+                }]);
+            }
+        });
+        return $channels;
     }
 
     /**

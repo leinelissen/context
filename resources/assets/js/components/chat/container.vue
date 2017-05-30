@@ -108,7 +108,7 @@
             },
             addMessage(message) {
                 // Add channelid to object
-                message.channel_id = this.channelid;
+                message.channel_id = this.currentChannelId;
 
                 // Create message in backend
                 axios.post("/api/message", message)

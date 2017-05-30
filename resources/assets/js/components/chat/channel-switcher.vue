@@ -80,14 +80,14 @@
         created(){
             // Retrieve available channels
             axios.get("/api/channel/")
-            .then(response => {
-                this.channels.group = response.data.filter(function(element){
-                    return element.group;
+                .then(response => {
+                    this.channels.group = response.data.filter(channel => {
+                        return channel.group;
+                    });
+                    this.channels.user = response.data.filter(channel => {
+                        return !channel.group;
+                    });
                 });
-                this.channels.user = response.data.filter(function(element){
-                    return !element.group;
-                });
-            });
         },
         methods: {
             switchChannel(id){
@@ -105,7 +105,7 @@
                     if(response.data.error !== "exists"){
                         this.channels.user.push(response.data);
                     }
-                    
+
                     this.switchChannel(response.data.id);
                     this.createUserChannel = false;
                 });

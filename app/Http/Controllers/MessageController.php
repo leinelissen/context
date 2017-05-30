@@ -63,6 +63,9 @@ class MessageController extends Controller
         // Save message in user context
         $user->messages()->save($message);
 
+        // Save channel, so its timestamp is modified
+        $channel->touch();
+
         // Dispatch event
         broadcast(new MessageCreated($message))->toOthers();
     }
