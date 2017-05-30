@@ -20,6 +20,13 @@ window.Vue = require("vue");
 window.axios = require("axios");
 window.axios.defaults.headers.common["X-CSRF-TOKEN"] = document.head.querySelector("meta[name=csrf-token]").content;
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.interceptors.response.use(null, function(error) {
+    if (error.status === 401) {
+        window.location.href = "/";
+    }
+
+    return Promise.reject(error);
+});
 
 /**
  * Laravel Echo
