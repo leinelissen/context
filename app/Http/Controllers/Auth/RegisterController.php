@@ -6,6 +6,7 @@ use App\Channel;
 use App\Http\Controllers\Controller;
 use App\Mail\UserCreated;
 use App\User;
+use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -77,6 +78,8 @@ class RegisterController extends Controller
         // NOTE: DO NOT USE IN PRODUCTION
         $channels = Channel::where('group', '=', '1');
         $user->channels()->attach($channels->pluck('id'));
+
+        $user->roles()->attach(Role::where('name', 'Student')->get());
 
         // Notify user of creation
         Mail::to($user)->send(new UserCreated($user));
