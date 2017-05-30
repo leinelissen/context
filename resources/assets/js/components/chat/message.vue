@@ -1,6 +1,9 @@
 <template>
     <div class="message"
         v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user)}">
+        <img
+            v-if="group && message.user.id !== userid"
+            v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
         <div class="flex-container">
             <div class="info">
                 <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
@@ -13,7 +16,10 @@
 
 <script type="text/javascript">
     export default {
-        props: ["message"],
+        props: [
+            "message",
+            "group"
+        ],
         data() {
             return{
                 userid: window.userid
@@ -104,6 +110,7 @@
 
     div.message.self{
         text-align: right;
+        display: block;
 
         p{
             background-image: $blue-gradient;
@@ -138,5 +145,18 @@
         div.flex-container:after{
             border-bottom: $triangle-size solid $grey-dark;
         }
+    }
+
+    div.message{
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    div.message > img{
+        border-radius: 25px;
+        height: 50px;
+        width: 50px;
+        margin-right: 5px;
     }
 </style>

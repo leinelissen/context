@@ -38,6 +38,7 @@
                 <chat-message
                     v-for="message in channel.messages"
                     :message="message"
+                    :group="channel.group"
                     :key="message.id">
                 </chat-message>
                 <div class="empty" v-show="channel.messages.length === 0">
