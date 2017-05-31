@@ -35,4 +35,14 @@ class Message extends Model
     {
         return $this->belongsTo("App\Channel");
     }
+
+    /**
+     * Get all the readreceipts associated with this message
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function readReceipts()
+    {
+        return $this->morphMany("App\ReadReceipt");
+    }
 }
