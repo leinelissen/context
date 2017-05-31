@@ -44,4 +44,14 @@ class Channel extends Model
     {
         return $this->belongsToMany("App\User");
     }
+
+    /**
+     * The readreceipts that belong to the channel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function readReceipts()
+    {
+        return $this->hasManyThrough("App\ReadReceipt", "App\Message");
+    }
 }

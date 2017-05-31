@@ -43,6 +43,6 @@ class Message extends Model
      */
     public function readReceipts()
     {
-        return $this->morphMany("App\ReadReceipt");
+        return $this->hasMany("App\ReadReceipt");
     }
 }

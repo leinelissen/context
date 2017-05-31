@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\User;
+use App\ReadReceipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ChannelController extends Controller
 {
@@ -17,12 +19,18 @@ class ChannelController extends Controller
     public function index()
     {
         $channels = Auth::user()->channels()->orderBy('updated_at', 'desc')->get();
+
         $channels->each(function ($channel) {
+            // Add user to non-group channels
             if (!$channel->group) {
-                $channel->load(['users' => function ($query) {
-                    $query->where('users.id', '!=', Auth::id());
-                }]);
+                $channel->user = $channel->users()->where('channel_user.user_id', '!=', Auth::id())->first();
             }
+
+            // Add amount of read receipts
+            $channel->read_receipts = $channel->readReceipts()
+                ->where('read_receipts.user_id', Auth::id())
+                ->where('read', false)
+                ->count();
         });
         return $channels;
     }
@@ -102,9 +110,22 @@ class ChannelController extends Controller
      */
     public function show(Channel $channel)
     {
-        return $channel->load(['messages.user', 'users' => function ($query) {
-            $query->where('users.id', '!=', Auth::id());
+        $channel = $channel->load(['messages', 'messages.user', 'messages.readReceipts' => function ($query) {
+            $query->where('user_id', Auth::id());
+            $query->where('read', false);
         }]);
+
+        if (!$channel->group) {
+            $channel->user = $channel->users()->where('channel_user.user_id', '!=', Auth::id())->first();
+        }
+
+        $channel->messages->transform( function ($message) {
+            $message->read = !boolval(count($message->readReceipts));
+            unset($message->readReceipts);
+            return $message;
+        });
+
+        return $channel;
     }
 
     /**

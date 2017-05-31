@@ -24,7 +24,9 @@
                         v-bind:class="{active: currentChannel == channel.id}">
                         <a v-bind:href="channel.id"
                             v-on:click.prevent="switchChannel(channel.id)">
-                            {{ channel.name }}
+                            <span>{{ channel.name }}</span>
+                            <span class="receipts"
+                                v-if="channel.read_receipts > 0">{{ channel.read_receipts }}</span>
                         </a>
                     </li>
                 </ul>
@@ -48,9 +50,8 @@
                         v-for="channel in channels.user"
                         v-bind:class="{active: currentChannel == channel.id}">
                         <a v-bind:href="channel.id"
-                            v-on:click.prevent="switchChannel(channel.id)"
-                            v-if="channel.users.length">
-                            {{ channel.users[0].first_name }} {{ channel.users[0].last_name }}
+                            v-on:click.prevent="switchChannel(channel.id)">
+                            {{ channel.user.first_name }} {{ channel.user.last_name }}
                         </a>
                     </li>
                 </ul>
@@ -202,12 +203,19 @@
             }
 
             a{
-                display: block;
+                display: flex;
                 padding: 10px 20px;
                 margin: 0;
+                justify-content: space-between;
 
                 &:hover{
                     background-color: rgba($white, 0.05);
+                }
+
+                span.receipts{
+                    padding: 0px 13px;
+                    border-radius: $border-radius;
+                    background-image: $grey-gradient;
                 }
             }
         }

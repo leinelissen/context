@@ -1,6 +1,7 @@
 <template>
     <div class="message"
-        v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user)}">
+        v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user), new: !message.read}">
+        <div v-if="!message.read" class="new-indicator"></div>
         <img
             v-if="group && message.user.id !== userid"
             v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
@@ -151,6 +152,11 @@
         display: flex;
         align-items: center;
         margin-top: 5px;
+        position: relative;
+
+        &.new{
+            padding-right: 10px;
+        }
     }
 
     div.message > img{
@@ -158,5 +164,14 @@
         height: 50px;
         width: 50px;
         margin-right: 5px;
+    }
+
+    div.new-indicator{
+        width: 10px;
+        height: 10px;
+        background-image: $blue-gradient;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: -10px;
     }
 </style>

@@ -14,15 +14,15 @@ class ReadReceipt extends Model
     protected $fillable = [
         "read"
     ];
-    
+
     /**
-     * Get all of the owning readreceiptable models.
+     * Get the message that owns the readreceipt.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function readReceiptable()
+    public function message()
     {
-        return $this->morphTo();
+        return $this->belongsTo("App\Message");
     }
 
     /**

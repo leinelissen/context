@@ -11,18 +11,18 @@
             </h2>
             <div v-else class="container">
                 <div>
-                    <h2 v-if="channel.users.length > 0">
-                        {{ channel.users[0].first_name }}
-                        {{ channel.users[0].last_name }}
+                    <h2>
+                        {{ channel.user.first_name }}
+                        {{ channel.user.last_name }}
                     </h2>
-                    <p v-if="typeof channel.users[0].roles !== 'undefined'">
-                        <span v-for="(role, index) in channel.users[0].roles">
+                    <p v-if="typeof channel.user.roles !== 'undefined'">
+                        <span v-for="(role, index) in channel.user.roles">
                             <span v-if="index > 0">, </span>
                             {{role.name}}
                         </span>
                     </p>
                 </div>
-                <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.users[0].id + '.png'">
+                <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.user.id + '.png'">
             </div>
         </div>
         <div v-if="channel.group" class="channel-announcement">
@@ -61,7 +61,7 @@
             return{
                 channel: {
                     messages: [],
-                    users: [
+                    user: [
                         {
                             first_name: "",
                             last_name: "",
@@ -96,6 +96,7 @@
                 .then(response => {
                     this.channel = response.data;
                     this.scrollToBottom();
+                    console.log(response.data);
                 });
 
                 // Leave any current channels
