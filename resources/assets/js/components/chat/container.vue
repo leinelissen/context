@@ -79,6 +79,15 @@
         },
         created(){
             this.init(this.channelid);
+            Echo.private("App.User." + window.user.id)
+                .notification(e => {
+                    if(e.type === "App\\Notifications\\NewMessage"){
+                        var channelName = e.message.channel.group ? " in " + e.message.channel.name : "";
+                        iziToast.show({
+                            "title": "New message from " + e.message.user.first_name + " " + e.message.user.last_name + channelName,
+                            "message": "\"" + e.message.message + "\""
+                        });                    }
+                });
         },
         methods: {
             init(channelid) {
@@ -97,10 +106,6 @@
                     .listen("MessageCreated", e => {
                         this.channel.messages.push(e.message);
                         this.scrollToBottom();
-                        iziToast.show({
-                            "title": "New message from " + e.message.user.first_name + " " + e.message.user.last_name,
-                            "message": "\"" + e.message.message + "\""
-                        });
                     });
 
                 this.currentChannel = "Channel." + channelid;

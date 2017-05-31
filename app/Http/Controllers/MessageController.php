@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Events\MessageCreated;
 use App\Message;
+use App\Notifications\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class MessageController extends Controller
 {
@@ -65,6 +67,9 @@ class MessageController extends Controller
 
         // Save channel, so its timestamp is modified
         $channel->touch();
+
+        // Dispatch notification
+        Notification::send($channel->users->except(['id' => Auth::id()]), new NewMessage($message));
 
         // Dispatch event
         broadcast(new MessageCreated($message))->toOthers();
