@@ -117,7 +117,7 @@
                     this.channel.messages.push({
                         message: message.message,
                         user:{
-                            id: window.userid
+                            id: window.user.id
                         },
                         channel:{
                             id: this.channelid

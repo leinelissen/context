@@ -22,7 +22,7 @@
         ],
         data() {
             return{
-                userid: window.userid
+                userid: window.user.id
             };
         },
         methods: {
