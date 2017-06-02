@@ -2,7 +2,8 @@
     <div class="chat-container">
         <chat-channel-switcher
             v-on:switchchannel="switchChannel"
-            :currentChannel="currentChannelId">
+            :currentChannel="currentChannelId"
+            ref="channelSwitcher">
         </chat-channel-switcher>
         <div class="channel-name"
             v-bind:class="{ group: channel.group, user: !channel.group}">
@@ -86,7 +87,11 @@
                         iziToast.show({
                             "title": "New message from " + e.message.user.first_name + " " + e.message.user.last_name + channelName,
                             "message": "\"" + e.message.message + "\""
-                        });                    }
+                        });
+                        this.$refs.channelSwitcher.load();
+                    } else if(e.type === "App\\Notifications\\MessageRead"){
+                        this.$refs.channelSwitcher.load();
+                    }
                 });
         },
         methods: {

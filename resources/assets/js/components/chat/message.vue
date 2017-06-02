@@ -50,7 +50,7 @@
             read() {
                 axios.get("/api/read/" + this.message.id)
                 .then(() => {
-                    console.log("LEESIEKS");
+                    //
                 });
             }
         }

@@ -8,6 +8,7 @@ use App\Message;
 use App\User;
 use App\ReadReceipt;
 use App\Notifications\NewMessage;
+use App\Notifications\MessageRead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -158,6 +159,8 @@ class MessageController extends Controller
         $readReceipt = $message->readReceipts()->where('read_receipts.user_id', Auth::id())->firstOrFail();
         $readReceipt->read = true;
         $readReceipt->save();
+
+        Auth::user()->notify(new MessageRead());
 
         return "true";
     }

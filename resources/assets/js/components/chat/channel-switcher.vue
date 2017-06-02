@@ -81,16 +81,7 @@
             };
         },
         created(){
-            // Retrieve available channels
-            axios.get("/api/channel/")
-                .then(response => {
-                    this.channels.group = response.data.filter(channel => {
-                        return channel.group;
-                    });
-                    this.channels.user = response.data.filter(channel => {
-                        return !channel.group;
-                    });
-                });
+            this.load();
         },
         methods: {
             switchChannel(id){
@@ -112,6 +103,18 @@
                     this.switchChannel(response.data.id);
                     this.createUserChannel = false;
                 });
+            },
+            load(){
+                // Retrieve available channels
+                axios.get("/api/channel/")
+                    .then(response => {
+                        this.channels.group = response.data.filter(channel => {
+                            return channel.group;
+                        });
+                        this.channels.user = response.data.filter(channel => {
+                            return !channel.group;
+                        });
+                    });
             }
         }
     };
