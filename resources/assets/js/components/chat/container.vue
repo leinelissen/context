@@ -96,7 +96,6 @@
                 .then(response => {
                     this.channel = response.data;
                     this.scrollToBottom();
-                    console.log(response.data);
                 });
 
                 // Leave any current channels

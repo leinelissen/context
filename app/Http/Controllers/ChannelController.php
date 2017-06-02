@@ -58,7 +58,7 @@ class ChannelController extends Controller
         $this->validate($request, [
             'group' => 'required|boolean',
             'name'  => 'nullable|string',
-            'user'  => 'required_if:group,0|integer',
+            'user'  => 'required_if:group,0|integer|not_in:'.Auth::id(),
             'users' => 'required_if:group,1|array',
         ]);
 
