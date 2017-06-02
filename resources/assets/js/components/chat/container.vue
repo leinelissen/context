@@ -150,11 +150,11 @@
                 // Target containing div
 
                 // Scroll to bottom of containing div
-                // NOTE: The scroll function is executed with a sligt timeout,
+                // NOTE: The scroll function is executed with a slight timeout,
                 // so we can wait for the element to be added to the dom
-                setTimeout(function(){
-                    window.scrollTo(0,document.body.scrollHeight);
-                }, 100);
+                Vue.nextTick(() => {
+                    window.scrollTo(0, document.body.scrollHeight);
+                });
             },
         }
     };
