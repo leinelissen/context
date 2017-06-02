@@ -51,7 +51,9 @@
                         v-bind:class="{active: currentChannel == channel.id}">
                         <a v-bind:href="channel.id"
                             v-on:click.prevent="switchChannel(channel.id)">
-                            {{ channel.user.first_name }} {{ channel.user.last_name }}
+                            <span>{{ channel.user.first_name }} {{ channel.user.last_name }}</span>
+                            <span class="receipts"
+                                v-if="channel.read_receipts > 0">{{ channel.read_receipts }}</span>
                         </a>
                     </li>
                 </ul>
