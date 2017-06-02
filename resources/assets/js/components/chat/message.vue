@@ -26,6 +26,11 @@
                 userid: window.user.id
             };
         },
+        created() {
+            if(!this.message.read) {
+                this.read();
+            }
+        },
         methods: {
             isTeacher(user) {
                 if(typeof user.roles === "undefined"){
@@ -41,6 +46,12 @@
                 }
 
                 return false;
+            },
+            read() {
+                axios.get("/api/read/" + this.message.id)
+                .then(() => {
+                    console.log("LEESIEKS");
+                });
             }
         }
     };

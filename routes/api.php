@@ -21,4 +21,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('message', 'MessageController');
     Route::resource('channel', 'ChannelController');
     Route::get('user/{query}', 'UserController@find');
+    Route::get('read/{id}', 'MessageController@read');
 });

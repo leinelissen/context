@@ -150,4 +150,15 @@ class MessageController extends Controller
 
         return $readReceipts;
     }
+
+    public function read($id)
+    {
+        $message = Message::findOrFail($id);
+
+        $readReceipt = $message->readReceipts()->where('read_receipts.user_id', Auth::id())->firstOrFail();
+        $readReceipt->read = true;
+        $readReceipt->save();
+
+        return "true";
+    }
 }
