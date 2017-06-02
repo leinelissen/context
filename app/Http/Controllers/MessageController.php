@@ -137,7 +137,7 @@ class MessageController extends Controller
         broadcast(new MessageCreated($message))->toOthers();
 
         // Dispatch read receipts
-        $readReceipts = $channel->users->transform( function (User $user) use ($message) {
+        $readReceipts = $channel->users->except(['id' => Auth::id()])->transform( function (User $user) use ($message) {
             $receipt = new ReadReceipt([
                 'read' => false,
             ]);

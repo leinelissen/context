@@ -127,7 +127,8 @@
                         },
                         channel:{
                             id: this.channelid
-                        }
+                        },
+                        read: true,
                     });
 
                     // Then show new message by scrolling
