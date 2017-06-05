@@ -1,6 +1,6 @@
 <template>
     <div class="message"
-        v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user), new: !message.read}">
+        v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user) && message.user.id !== userid, new: !message.read}">
         <img
             v-if="group && message.user.id !== userid"
             v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
@@ -8,6 +8,12 @@
             <div class="info">
                 <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
                 <span class="time">{{ message.created_at }}</span>
+                <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid">
+                    <a href="#">&#x2304;</a>
+                    <div>
+                        <a href="#" v-on:click.prevent="makeAnnouncement">Make announcement</a>
+                    </div>
+                </span>
             </div>
             <p>{{ message.message }}</p>
         </div>
@@ -49,6 +55,14 @@
             },
             read() {
                 axios.get("/api/read/" + this.message.id)
+                .then(() => {
+                    //
+                });
+            },
+            makeAnnouncement() {
+                axios.post("/api/announce/" + this.message.channel_id, {
+                    "announcement": this.message.message
+                })
                 .then(() => {
                     //
                 });
@@ -94,6 +108,7 @@
         border-radius: $border-radius $border-radius $border-radius 0;
         text-align: left;
         margin: 0;
+        z-index: 2;
 
         @media($media-min-width){
             padding: 0.75em 1em;
@@ -103,7 +118,6 @@
     div.info{
         display: flex;
         height: 18px;
-        overflow: hidden;
         width: auto;
 
         span{
@@ -191,5 +205,44 @@
         z-index: 2;
         margin-top: -25px;
         margin-left: -5px;
+    }
+
+    div.info span.menu{
+        position: relative;
+
+        &:hover > div{
+            display: block;
+        }
+
+        a{
+            border: 0;
+        }
+
+        & > div{
+            display: none;
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            z-index: 3;
+            width: 300px;
+            border-radius: $border-radius;
+
+            background: rgba($grey, 0.7);
+            backdrop-filter: blur(4px);
+
+            font-size: 20px;
+            text-align: center;
+
+            & > a{
+                color: white;
+                display: block;
+                padding: 20px 10px;
+                border-radius: $border-radius;
+
+                &:hover{
+                    background: rgba($white, 0.2);
+                }
+            }
+        }
     }
 </style>

@@ -164,4 +164,22 @@ class ChannelController extends Controller
     {
         //
     }
+
+    public function announce(Request $request, $id)
+    {
+        $channel = Channel::findOrFail($id);
+
+        if (!$channel->users->contains('id', Auth::id()) || !Auth::user()->roles->contains('name', 'Teacher')) {
+            abort('403');
+        }
+
+        $this->validate($request, [
+            'announcement' => 'required|string'
+        ]);
+
+        $channel->announcement = $request->announcement;
+        $channel->save();
+
+        return "true";
+    }
 }

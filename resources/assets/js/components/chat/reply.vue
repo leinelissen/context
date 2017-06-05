@@ -26,7 +26,8 @@
                     });
 
                     // Reset reply element
-                    this.messageText = "";                }
+                    this.messageText = "";
+                }
             }
         }
     };
@@ -41,6 +42,7 @@
         bottom: 0;
         background-color: $grey-very-light;
         width: 100%;
+        z-index: 5;
     }
 
     .container{
