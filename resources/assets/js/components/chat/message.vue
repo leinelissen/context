@@ -1,23 +1,26 @@
 <template>
     <div class="message"
         v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user) && message.user.id !== userid, new: !message.read}">
-        <img
-            v-if="group && message.user.id !== userid"
-            v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
-        <div class="flex-container">
-            <div class="info" v-if="group">
-                <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
-                <span class="time">{{ message.created_at }}</span>
-                <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid">
-                    <a href="#">&#x2304;</a>
-                    <div>
-                        <a href="#" v-on:click.prevent="makeAnnouncement">Make announcement</a>
-                    </div>
-                </span>
+        <v-touch v-on:tap="tapped = !tapped">
+            <img
+                v-if="group && message.user.id !== userid"
+                v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
+            <div class="flex-container"
+                v-bind:class="{ hover: tapped }">
+                <div class="info" v-if="group">
+                    <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
+                    <span class="time">{{ message.created_at }}</span>
+                    <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid">
+                        <a href="#" v-on:click.prevent="">&#x2304;</a>
+                        <div>
+                            <a href="#" v-on:click.prevent="makeAnnouncement">Make announcement</a>
+                        </div>
+                    </span>
+                </div>
+                <p>{{ message.message }}</p>
             </div>
-            <p>{{ message.message }}</p>
-        </div>
-        <div v-if="!message.read && message.user.id !== userid" class="new-indicator"></div>
+            <div v-if="!message.read && message.user.id !== userid" class="new-indicator"></div>
+        </v-touch>
     </div>
 </template>
 
@@ -29,7 +32,8 @@
         ],
         data() {
             return{
-                userid: window.user.id
+                userid: window.user.id,
+                tapped: false,
             };
         },
         created() {
@@ -134,7 +138,7 @@
         }
     }
 
-    div.message.self{
+    div.message.self > div{
         text-align: right;
         display: block;
 
@@ -148,7 +152,8 @@
             transition: all 0.1s ease;
         }
 
-        .flex-container:hover{
+        .flex-container:hover,
+        .flex-container.hover{
             div.info{
                 height: 18px;
             }
@@ -179,7 +184,7 @@
         }
     }
 
-    div.message{
+    div.message > div{
         display: flex;
         align-items: center;
         margin-top: 5px;
@@ -190,7 +195,7 @@
         }
     }
 
-    div.message > img{
+    div.message > div > img{
         border-radius: 25px;
         height: 50px;
         width: 50px;
@@ -227,7 +232,7 @@
             width: 300px;
             border-radius: $border-radius;
 
-            background: rgba($grey, 0.7);
+            background: rgba($grey, 0.8);
             backdrop-filter: blur(4px);
 
             font-size: 20px;

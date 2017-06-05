@@ -7,6 +7,8 @@
  */
 
 window.Vue = require("vue");
+const VueTouch = require("vue-touch");
+Vue.use(VueTouch, {name: "v-touch"});
 
 /**
  * Axios

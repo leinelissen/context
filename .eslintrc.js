@@ -14,6 +14,7 @@ module.exports = {
     },
     "globals":{
         "window": true,
+        "Vue": true,
         "vue": true,
         "app": true,
         "axios": true,
