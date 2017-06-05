@@ -123,20 +123,7 @@
                 // Create message in backend
                 axios.post("/api/message", message)
                 .then(() => {
-                    // Add new message to message stack
-                    this.channel.messages.push({
-                        message: message.message,
-                        user:{
-                            id: window.user.id
-                        },
-                        channel:{
-                            id: this.channelid
-                        },
-                        read: true,
-                    });
-
-                    // Then show new message by scrolling
-                    this.scrollToBottom();
+                    //
                 })
                 .catch(error => {
                     alert("Your message could not be sent!");

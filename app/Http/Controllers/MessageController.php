@@ -135,7 +135,7 @@ class MessageController extends Controller
         Notification::send($channel->users->except(['id' => Auth::id()]), new NewMessage($message));
 
         // Dispatch event
-        broadcast(new MessageCreated($message))->toOthers();
+        broadcast(new MessageCreated($message));
 
         // Dispatch read receipts
         $readReceipts = $channel->users->except(['id' => Auth::id()])->transform( function (User $user) use ($message) {
