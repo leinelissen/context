@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Events\MessageCreated;
 use App\Message;
-use App\User;
-use App\ReadReceipt;
-use App\Notifications\NewMessage;
 use App\Notifications\MessageRead;
+use App\Notifications\NewMessage;
+use App\ReadReceipt;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -126,7 +126,8 @@ class MessageController extends Controller
     /**
      * Notify all users concerned with the message of its creation.
      *
-     * @param  Message $message
+     * @param Message $message
+     *
      * @return void
      */
     public function notify(Message $message, Channel $channel)
@@ -138,7 +139,7 @@ class MessageController extends Controller
         broadcast(new MessageCreated($message));
 
         // Dispatch read receipts
-        $readReceipts = $channel->users->except(['id' => Auth::id()])->transform( function (User $user) use ($message) {
+        $readReceipts = $channel->users->except(['id' => Auth::id()])->transform(function (User $user) use ($message) {
             $receipt = new ReadReceipt([
                 'read' => false,
             ]);
@@ -162,6 +163,6 @@ class MessageController extends Controller
 
         Auth::user()->notify(new MessageRead());
 
-        return "true";
+        return 'true';
     }
 }

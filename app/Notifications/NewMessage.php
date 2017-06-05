@@ -4,9 +4,8 @@ namespace App\Notifications;
 
 use App\Message;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Notifications\Notification;
 
 class NewMessage extends Notification
 {
@@ -27,7 +26,8 @@ class NewMessage extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -38,14 +38,15 @@ class NewMessage extends Notification
     /**
      * Get the broadcastable representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return BroadcastMessage
      */
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            "type" => "newMessage",
-            "message" => $this->message->toArray()
+            'type'    => 'newMessage',
+            'message' => $this->message->toArray(),
         ]);
     }
 }

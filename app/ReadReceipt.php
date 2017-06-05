@@ -12,7 +12,7 @@ class ReadReceipt extends Model
      * @var array
      */
     protected $fillable = [
-        "read"
+        'read',
     ];
 
     /**

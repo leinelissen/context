@@ -2,7 +2,6 @@
 
 use App\Channel;
 use App\User;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
