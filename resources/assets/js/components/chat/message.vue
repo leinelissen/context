@@ -10,10 +10,10 @@
             </a>
             <div class="flex-container"
                 v-bind:class="{ hover: tapped }">
-                <div class="info" v-if="group">
-                    <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
+                <div class="info">
+                    <span class="user" v-if="message.user.id !== userid && group">{{ message.user.first_name}} {{ message.user.last_name}}</span>
                     <span class="time">{{ message.created_at }}</span>
-                    <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid">
+                    <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid && group">
                         <a href="#" v-on:click.prevent="">&#x2304;</a>
                         <div>
                             <a href="#" v-on:click.prevent="makeAnnouncement">Make announcement</a>
