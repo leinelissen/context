@@ -37,7 +37,7 @@ class Message extends Model
     }
 
     /**
-     * Get all the readreceipts associated with this message
+     * Get all the readreceipts associated with this message.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */

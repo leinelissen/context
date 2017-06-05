@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Channel;
-use App\User;
-use App\ReadReceipt;
 use App\Events\NewAnnouncement;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ChannelController extends Controller
 {
@@ -33,6 +31,7 @@ class ChannelController extends Controller
                 ->where('read', false)
                 ->count();
         });
+
         return $channels;
     }
 
@@ -120,9 +119,10 @@ class ChannelController extends Controller
             $channel->user = $channel->users()->where('channel_user.user_id', '!=', Auth::id())->first();
         }
 
-        $channel->messages->transform( function ($message) {
+        $channel->messages->transform(function ($message) {
             $message->read = !boolval(count($message->readReceipts));
             unset($message->readReceipts);
+
             return $message;
         });
 
@@ -175,7 +175,7 @@ class ChannelController extends Controller
         }
 
         $this->validate($request, [
-            'announcement' => 'required|string'
+            'announcement' => 'required|string',
         ]);
 
         $channel->announcement = $request->announcement;
@@ -184,6 +184,6 @@ class ChannelController extends Controller
         // Dispatch event
         broadcast(new NewAnnouncement($this->show($channel)));
 
-        return "true";
+        return 'true';
     }
 }

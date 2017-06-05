@@ -3,10 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Notifications\Notification;
 
 class MessageRead extends Notification
 {
@@ -25,7 +23,8 @@ class MessageRead extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -36,13 +35,14 @@ class MessageRead extends Notification
     /**
      * Get the broadcastable representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return BroadcastMessage
      */
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            "type" => "messageRead",
+            'type' => 'messageRead',
         ]);
     }
 }
