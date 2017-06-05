@@ -2,9 +2,12 @@
     <div class="message"
         v-bind:class="{ self: message.user.id === userid, teacher: isTeacher(message.user) && message.user.id !== userid, new: !message.read}">
         <v-touch v-on:tap="tapped = !tapped">
-            <img
+            <a href="#" class="avatar"
+                v-on:click.prevent="showProfile()">
+                <img
                 v-if="group && message.user.id !== userid"
                 v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
+            </a>
             <div class="flex-container"
                 v-bind:class="{ hover: tapped }">
                 <div class="info" v-if="group">
@@ -25,6 +28,8 @@
 </template>
 
 <script type="text/javascript">
+    import { EventBus } from "../../eventbus.js";
+
     export default {
         props: [
             "message",
@@ -70,6 +75,9 @@
                 .then(() => {
                     //
                 });
+            },
+            showProfile() {
+                EventBus.$emit("openProfile", this.message.user.id);
             }
         }
     };
@@ -195,11 +203,15 @@
         }
     }
 
-    div.message > div > img{
-        border-radius: 25px;
-        height: 50px;
-        width: 50px;
-        margin-right: 5px;
+    a.avatar {
+        border: 0;
+
+        img{
+            border-radius: 25px;
+            height: 50px;
+            width: 50px;
+            margin-right: 5px;
+        }
     }
 
     div.new-indicator{

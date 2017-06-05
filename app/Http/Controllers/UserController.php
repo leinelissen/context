@@ -15,4 +15,9 @@ class UserController extends Controller
             ->where('id', '!=', Auth::id())
             ->get();
     }
+
+    public function show($id)
+    {
+        return User::findOrFail($id);
+    }
 }

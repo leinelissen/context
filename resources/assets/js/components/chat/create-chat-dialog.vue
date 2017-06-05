@@ -64,7 +64,7 @@
         },
         methods:{
             findUsers(e){
-                axios.get("/api/user/" + e.target.value)
+                axios.get("/api/users/" + e.target.value)
                 .then(response => {
                     this.users = response.data;
                 });

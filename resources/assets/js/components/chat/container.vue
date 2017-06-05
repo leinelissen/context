@@ -23,7 +23,10 @@
                         </span>
                     </p>
                 </div>
-                <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.user.id + '.png'">
+                <a href="#" class="avatar"
+                    v-on:click.prevent="showProfile()">
+                    <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.user.id + '.png'">
+                </a>
             </div>
         </div>
         <div v-if="channel.group" class="channel-announcement">
@@ -50,10 +53,15 @@
         <chat-reply
             v-on:messagesent="addMessage">
         </chat-reply>
+        <chat-profile
+            v-on:switchchannel="switchChannel">
+        </chat-profile>
     </div>
 </template>
 
 <script type="text/javascript">
+    import { EventBus } from "../../eventbus.js";
+
     export default {
         props: [
             "channelid"
@@ -137,15 +145,13 @@
                 this.init(id);
             },
             scrollToBottom() {
-                // Target containing div
-
-                // Scroll to bottom of containing div
-                // NOTE: The scroll function is executed with a slight timeout,
-                // so we can wait for the element to be added to the dom
                 Vue.nextTick(() => {
                     window.scrollTo(0, document.body.scrollHeight);
                 });
             },
+            showProfile() {
+                EventBus.$emit("openProfile", this.channel.user.id);
+            }
         }
     };
 </script>
@@ -199,10 +205,16 @@
             align-items: center;
             display: flex;
 
-            img{
-                width: 40px;
-                height: 40px;
-                border-radius: 20px;
+            a.avatar{
+                border: 0;
+                align-items: center;
+                display: flex;
+
+                img{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 20px;
+                }
             }
         }
 
