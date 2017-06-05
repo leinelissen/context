@@ -5,7 +5,7 @@
             v-if="group && message.user.id !== userid"
             v-bind:src="'https://api.adorable.io/avatars/50/' + message.user.id + '.png'">
         <div class="flex-container">
-            <div class="info">
+            <div class="info" v-if="group">
                 <span class="user" v-if="message.user.id !== userid">{{ message.user.first_name}} {{ message.user.last_name}}</span>
                 <span class="time">{{ message.created_at }}</span>
                 <span class="menu" v-if="isTeacher(message.user) && message.user.id === userid">
