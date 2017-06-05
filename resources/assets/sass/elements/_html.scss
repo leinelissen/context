@@ -16,9 +16,11 @@ body {
     font-family: $font-text;
     color: $text-color;
     font-size: 14px;
+    cursor: pointer;
 
     @media($media-min-width){
         font-size: 16px;
+        cursor: auto;
     }
 }
 
