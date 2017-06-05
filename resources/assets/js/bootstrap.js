@@ -51,7 +51,7 @@ window.Echo = new Echo({
  * iziToast is a library for showing simple in-browser notifications
  */
 
-window.iziToast = require("iziToast");
+window.iziToast = require("izitoast");
 window.iziToast.settings({
     timeout: 45000,
     resetOnHover: true,
