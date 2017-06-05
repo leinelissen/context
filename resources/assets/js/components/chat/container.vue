@@ -111,6 +111,9 @@
                     .listen("MessageCreated", e => {
                         this.channel.messages.push(e.message);
                         this.scrollToBottom();
+                    })
+                    .listen("NewAnnouncement", e => {
+                        this.channel.announcement = e.channel.announcement;
                     });
 
                 this.currentChannel = "Channel." + channelid;

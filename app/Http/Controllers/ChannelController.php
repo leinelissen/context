@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\User;
 use App\ReadReceipt;
+use App\Events\NewAnnouncement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -179,6 +180,9 @@ class ChannelController extends Controller
 
         $channel->announcement = $request->announcement;
         $channel->save();
+
+        // Dispatch event
+        broadcast(new NewAnnouncement($this->show($channel)));
 
         return "true";
     }
