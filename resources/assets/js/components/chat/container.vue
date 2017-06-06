@@ -190,7 +190,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-left: 100px;
+        padding-left: 60px;
+
+        @media($media-min-width){
+            padding-left: 70px;
+        }
 
         &.user{
             h2{
@@ -222,11 +226,9 @@
             font-weight: 500;
             font-size: 24px;
             margin: 0;
-            margin-left: 60px;
 
             @media($media-min-width){
                 font-size: 32px;
-                margin-left: 0;
             }
 
             b{
