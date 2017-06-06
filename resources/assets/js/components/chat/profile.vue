@@ -15,6 +15,11 @@
         <a class="button" v-on:click.prevent="message">
             Message
         </a>
+        <a class="button"
+            v-bind:href="'tel:' + user.telephone"
+            v-if="currentUser.roles[0].name === 'Teacher'">
+            Telephone
+        </a>
         <div class="close">
             <a href="#" v-on:click.prevent="visible = false">
                 <i class="icons icon-close"></i>
@@ -33,7 +38,14 @@
                     "first_name": "",
                     "last_name": "",
                 },
-                visible: false
+                visible: false,
+                currentUser: {
+                    roles: [
+                        {
+                            name: ""
+                        }
+                    ]
+                },
             };
         },
         mounted() {
@@ -41,6 +53,8 @@
                 this.setUser(userId);
                 this.visible = true;
             });
+
+            this.currentUser = window.user;
         },
         methods: {
             setUser(id){

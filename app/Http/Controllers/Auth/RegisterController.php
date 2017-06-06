@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name'  => $data['last_name'],
             'email'      => $data['email'],
+            'telephone'  => '+31612345678',
         ]);
 
         // This will associate a new user with all existing group channels
