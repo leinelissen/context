@@ -96,9 +96,9 @@ class ChannelController extends Controller
         $user->channels()->save($channel);
         $channel->users()->attach($target);
 
-        return $channel->load(['users' => function ($query) {
-            $query->where('users.id', '!=', Auth::id());
-        }]);
+        $channel->user = $channel->users()->where('channel_user.user_id', '!=', Auth::id())->first();
+
+        return $channel;
     }
 
     /**
