@@ -9,11 +9,18 @@ class UserController extends Controller
 {
     public function find($query)
     {
-        return User::where('first_name', 'LIKE', '%'.$query.'%')
+        $users = User::where('first_name', 'LIKE', '%'.$query.'%')
             ->where('id', '!=', Auth::id())
             ->orWhere('last_name', 'LIKE', '%'.$query.'%')
             ->where('id', '!=', Auth::id())
             ->get();
+
+        $users->filter( function (User $user) {
+            $role = $user->roles()->first();
+            return $role->name === "Teacher" || $role->name === "Student";
+        });
+
+        return $users;
     }
 
     public function show($id)
