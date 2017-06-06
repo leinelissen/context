@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'BootstrapController@getChannels')->name('home');
+    Route::get('/', 'BootstrapController@getLatestChannel')->name('home');
     Route::get('/channel/{id}', 'BootstrapController@getChannel')->middleware('ownedByUser');
 });
 

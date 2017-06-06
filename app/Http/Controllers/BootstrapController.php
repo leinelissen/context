@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class BootstrapController extends Controller
 {
@@ -21,15 +22,10 @@ class BootstrapController extends Controller
         return view('channel')->with('channel', $channel);
     }
 
-    /**
-     * Return an overview of all channels the user is involved with.
-     *
-     * @return View
-     */
-    public function getChannels()
+    public function getLatestChannel(Request $request)
     {
-        $channels = Auth::user()->channels->sortByDesc('updated_at');
+        $channel = Auth::user()->channels()->orderBy('updated_at', 'desc')->first();
 
-        return view('index')->with('channels', $channels);
+        return redirect('/channel/'.$channel->id);
     }
 }
