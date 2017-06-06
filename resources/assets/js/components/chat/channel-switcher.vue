@@ -4,6 +4,13 @@
             <img v-if="!isActive" src="/images/context-icon-white.svg">
             <i v-if="isActive" class="icons icon-close"></i>
         </a>
+        <div class="currentuser">
+            <div>
+                <b>{{ currentUser.first_name }}</b>
+                <p>{{ currentUser.roles[0].name }}</p>
+            </div>
+            <img v-bind:src="'https://api.adorable.io/avatars/50/' + currentUser.id + '.png'">
+        </div>
         <div class="channels" v-show="isActive">
 
             <div>
@@ -78,10 +85,12 @@
                 isActive: false,
                 createChannel: false,
                 createUserChannel: false,
+                currentUser: {},
             };
         },
         created(){
             this.load();
+            this.currentUser = window.user;
         },
         methods: {
             switchChannel(id){
@@ -278,6 +287,24 @@
                     border-bottom: 50px solid $blue;
                 }
             }
+        }
+    }
+
+    div.currentuser{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px;
+
+        b, p{
+            margin:0;
+        }
+
+        img{
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 25px;
         }
     }
 </style>
