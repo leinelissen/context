@@ -65,11 +65,12 @@
     }
 
     a{
-        width: 50px;
+        width: 42px;
         height: 40px;
         margin-left: 10px;
         background-image: $blue-gradient;
-        border-radius: $border-radius;
+        border-radius: 5px;
+        border: 0;
 
         display: flex;
         align-items: center;
