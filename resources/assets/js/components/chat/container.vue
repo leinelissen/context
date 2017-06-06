@@ -25,7 +25,7 @@
                 </div>
                 <a href="#" class="avatar"
                     v-on:click.prevent="showProfile()">
-                    <img v-bind:src="'https://api.adorable.io/avatars/285/' + channel.user.id + '.png'">
+                    <img v-bind:src="'https://api.adorable.io/avatars/50/' + channel.user.id + '.png'">
                 </a>
             </div>
         </div>
@@ -198,8 +198,19 @@
 
         &.user{
             h2{
-                font-size: 24px;
+                font-size: 20px;
                 font-weight: 600;
+
+                @media($media-min-width){
+                    font-size: 24px;
+                }
+            }
+            p{
+                font-size: 12px;
+
+                @media($media-min-width){
+                    font-size: inherit;
+                }
             }
         }
 
@@ -215,9 +226,15 @@
                 display: flex;
 
                 img{
-                    width: 40px;
-                    height: 40px;
+                    width: 35px;
+                    height: 35px;
                     border-radius: 20px;
+
+                    @media($media-min-width){
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 20px;
+                    }
                 }
             }
         }

@@ -208,9 +208,17 @@
 
         img{
             border-radius: 25px;
-            height: 50px;
-            width: 50px;
-            margin-right: 5px;
+            height: 30px;
+            width: 30px;
+            margin-right: 0;
+
+            @media($media-min-width){
+                width: 50px;
+                height: 50px;
+                border-radius: 25px;
+                margin-right: 5px;
+
+            }
         }
     }
 

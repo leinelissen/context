@@ -80,7 +80,7 @@
         width: 150px;
         opacity: 0;
         top: 0;
-        z-index: 10;
+        z-index: 20;
         color: white;
         text-align: center;
         padding: 50px 0;
@@ -90,7 +90,7 @@
             display: block;
             width: 100%;
             height: 100%;
-            max-width: 350px;
+            max-width: 500px;
             right: 0;
             opacity: 1;
             overflow-y: scroll;
