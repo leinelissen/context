@@ -209,7 +209,7 @@
                 font-size: 12px;
 
                 @media($media-min-width){
-                    font-size: inherit;
+                    font-size: 14px;
                 }
             }
         }
