@@ -12,6 +12,7 @@ class RolesTableSeeder extends Seeder
         $this->roles = collect([
             'Teacher',
             'Student',
+            'Parent'
         ]);
     }
 
