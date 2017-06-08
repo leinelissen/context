@@ -20,6 +20,10 @@
             v-if="currentUser.roles[0].name === 'Teacher'">
             Telephone
         </a>
+        <a class="button" href="#"
+            v-if="currentUser.roles[0].name === 'Teacher'">
+            Message Parent
+        </a>
         <div class="close">
             <a href="#" v-on:click.prevent="visible = false">
                 <i class="icons icon-close"></i>
