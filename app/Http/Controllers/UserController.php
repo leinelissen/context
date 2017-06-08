@@ -15,10 +15,10 @@ class UserController extends Controller
             ->where('id', '!=', Auth::id())
             ->get();
 
-        $users->filter( function (User $user) {
+        $users = $users->filter( function ($user, $key) {
             $role = $user->roles()->first();
-            return $role->name === "Teacher" || $role->name === "Student";
-        });
+            return ($role->name === "Teacher" || $role->name === "Student");
+        })->values();
 
         return $users;
     }

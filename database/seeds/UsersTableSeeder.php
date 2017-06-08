@@ -29,14 +29,14 @@ class UsersTableSeeder extends Seeder
         // $parents = User::all();
 
         // Create students & teachers
-        factory(User::class, 30)->create()->each(function ($user) use($parents) {
+        factory(User::class, 30)->create()->each(function ($user) use ($parents) {
             $user->channels()->attach(Channel::all());
 
             if (rand(0, 100) < $this->chanceOfTeacher) {
                 $user->roles()->attach(Role::where('name', 'Teacher')->get());
             } else {
                 $user->roles()->attach(Role::where('name', 'Student')->get());
-                $user->parent()->associate($parents->random());
+                $user->parent()->attach($parents->random());
                 $user->save();
             }
         });
