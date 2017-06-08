@@ -78,4 +78,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany("App\Role");
     }
+
+    /**
+     * Get the parent that owns the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsToMany("App\User", "parent_child", "child_id", "parent_id");
+    }
+
+    /**
+     * Get the children for the parent.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->belongsToMany("App\User", "parent_child", "parent_id", "child_id");
+    }
 }

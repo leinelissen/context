@@ -21,13 +21,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 30)->create()->each(function ($user) {
+        // Create parents
+        $parents = factory(User::class, 10)->create()->each(function ($user) {
+            $user->roles()->attach(Role::where('name', 'Parent')->get());
+        });
+
+        // $parents = User::all();
+
+        // Create students & teachers
+        factory(User::class, 30)->create()->each(function ($user) use ($parents) {
             $user->channels()->attach(Channel::all());
 
             if (rand(0, 100) < $this->chanceOfTeacher) {
                 $user->roles()->attach(Role::where('name', 'Teacher')->get());
             } else {
                 $user->roles()->attach(Role::where('name', 'Student')->get());
+                $user->parent()->attach($parents->random());
+                $user->save();
             }
         });
     }
