@@ -25,6 +25,6 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return User::findOrFail($id);
+        return User::with('parent', 'children')->find($id);
     }
 }

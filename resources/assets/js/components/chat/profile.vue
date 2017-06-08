@@ -21,7 +21,8 @@
             Telephone
         </a>
         <a class="button" href="#"
-            v-if="currentUser.roles[0].name === 'Teacher'">
+            v-if="currentUser.roles[0].name === 'Teacher' && user.roles[0].name === 'Student'"
+            v-on:click.prevent="createChatWithParent()">
             Message Parent
         </a>
         <div class="close">
@@ -82,6 +83,16 @@
                 history.pushState(null, null, window.base_url + "/channel/" + id);
                 this.visible = false;
             },
+            createChatWithParent() {
+                axios.post("/api/channel", {
+                    group: false,
+                    name: null,
+                    user: this.user.parent[0].id
+                })
+                .then(e => {
+                    this.switchChannel(e.data.id);
+                });
+            }
         }
 
     };

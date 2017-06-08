@@ -30,7 +30,7 @@ $factory->define(App\Message::class, function (Faker\Generator $faker) {
             return App\Channel::inRandomOrder()->get()->first()->id;
         },
         'user_id' => function () {
-            return App\User::inRandomOrder()->get()->first()->id;
+            return App\User::where('id', '>', '10')->get()->random();
         },
     ];
 });

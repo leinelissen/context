@@ -96,6 +96,6 @@ class User extends Authenticatable
      */
     public function children()
     {
-        return $this->hasMany("App\User", "parent_child.child_id", "parent_child.parent_id");
+        return $this->belongsToMany("App\User", "parent_child", "parent_id", "child_id");
     }
 }
